@@ -1,5 +1,6 @@
 package hr.uniri.moleculeapi.model;
 
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,10 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Embeddable
 public class Mol {
-    public Mol(String structure) {
-        this.structure = structure;
+    public Mol(String m) {
+        this.m = m;
     }
 
-    private String structure;
+    private String m;
 }

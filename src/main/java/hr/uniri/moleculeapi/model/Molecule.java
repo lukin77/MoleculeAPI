@@ -1,6 +1,7 @@
 package hr.uniri.moleculeapi.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,20 +10,24 @@ import lombok.Setter;
 @Table(name = "mols", schema = "public")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class Molecule {
-
-    public Molecule(Integer id, String mol) {
-        this.id = id;
-        this.mol = mol;
-    }
-
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "molecules_generator")
+    @SequenceGenerator(name = "molecules_generator", sequenceName = "mol_seq", allocationSize = 1)
     private Integer id;
 
     @Column(name = "m")
-    private String mol;
+    @Embedded
+    private Mol mol;
 
+    @Override
+    public String toString() {
+        return "Molecule{" +
+                "id=" + id +
+                ", mol=" + mol +
+                '}';
+    }
 }
