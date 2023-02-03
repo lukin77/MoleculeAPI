@@ -47,4 +47,9 @@ public class MoleculeController {
                         .build()
         );
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Molecule>> substructureSearchMolecule(@RequestBody final Molecule molecule) {
+        return moleculeService.substructureSearch(molecule);
+    }
 }

@@ -14,4 +14,6 @@ public interface MoleculeService {
     ResponseEntity<Molecule> deleteMoleculeById(Integer id);
 
     Optional<Molecule> save(Molecule molecule);
+
+    ResponseEntity<List<Molecule>> substructureSearch(Molecule smilesMol);
 }

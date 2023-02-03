@@ -4,6 +4,7 @@ import hr.uniri.moleculeapi.model.Molecule;
 import hr.uniri.moleculeapi.repository.MoleculeJpaRepository;
 import hr.uniri.moleculeapi.repository.MoleculeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,14 @@ public class MoleculeServiceImpl implements MoleculeService {
     @Override
     public Optional<Molecule> save(Molecule molecule) {
         return moleculeRepository.save(molecule);
+    }
+
+    @Override
+    public ResponseEntity<List<Molecule>> substructureSearch(Molecule smilesMol) {
+//        Optional<List<Molecule>> moleculeList = moleculeJpaRepository.searchMoleculesByStructureContainingNative(smilesMol);
+
+        Optional<List<Molecule>> moleculeList = moleculeRepository.searchBySubstructure(smilesMol);
+        return moleculeList.map(molecules -> ResponseEntity.ok().body(molecules)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+
     }
 }
