@@ -1,15 +1,13 @@
 package hr.uniri.moleculeapi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "mols", schema = "public")
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Molecule {
@@ -22,12 +20,4 @@ public class Molecule {
     @Column(name = "m")
     @Embedded
     private Mol mol;
-
-    @Override
-    public String toString() {
-        return "Molecule{" +
-                "id=" + id +
-                ", mol=" + mol +
-                '}';
-    }
 }
