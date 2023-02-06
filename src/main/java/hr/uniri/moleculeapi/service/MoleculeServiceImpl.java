@@ -4,7 +4,6 @@ import hr.uniri.moleculeapi.model.Molecule;
 import hr.uniri.moleculeapi.repository.MoleculeJpaRepository;
 import hr.uniri.moleculeapi.repository.MoleculeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,34 +23,31 @@ public class MoleculeServiceImpl implements MoleculeService {
     }
 
     @Override
-    public List<Molecule> findAll() {
-        return moleculeJpaRepository.findAll();
+    public Optional<List<Molecule>> findAll() {
+        return Optional.ofNullable(moleculeJpaRepository.findAll());
     }
 
     @Override
-    public ResponseEntity<Molecule> findMoleculeById(Integer id) {
-        Optional<Molecule> optionalMolecule = moleculeJpaRepository.findById(id);
-        return optionalMolecule.map(Molecule -> ResponseEntity.ok().body(Molecule)).orElseGet(() -> ResponseEntity.notFound().build());
+    public Optional<Molecule> findMoleculeById(Integer id) {
+        return moleculeJpaRepository.findById(id);
     }
 
     @Override
     public ResponseEntity<Molecule> deleteMoleculeById(Integer id) {
-        if (findMoleculeById(id).getBody() != null) {
+        if (findMoleculeById(id).isPresent()) {
             moleculeJpaRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
 
     @Override
     public Optional<Molecule> save(Molecule molecule) {
-        return moleculeRepository.save(molecule);
+        return Optional.ofNullable(moleculeRepository.save(molecule));
     }
 
     @Override
-    public ResponseEntity<List<Molecule>> substructureSearch(Molecule smilesMol) {
-        Optional<List<Molecule>> moleculeList = moleculeRepository.searchBySubstructure(smilesMol);
-        return moleculeList.map(molecules -> ResponseEntity.ok().body(molecules)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-
+    public Optional<List<Molecule>> substructureSearch(Molecule smilesMol) {
+        return Optional.ofNullable(moleculeRepository.searchBySubstructure(smilesMol));
     }
 }

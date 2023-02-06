@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MoleculeService {
-    List<Molecule> findAll();
+    Optional<List<Molecule>> findAll();
 
-    ResponseEntity<Molecule> findMoleculeById(Integer id);
+    Optional<Molecule> findMoleculeById(Integer id);
 
     ResponseEntity<Molecule> deleteMoleculeById(Integer id);
 
     Optional<Molecule> save(Molecule molecule);
 
-    ResponseEntity<List<Molecule>> substructureSearch(Molecule smilesMol);
+    Optional<List<Molecule>> substructureSearch(Molecule smilesMol);
 }

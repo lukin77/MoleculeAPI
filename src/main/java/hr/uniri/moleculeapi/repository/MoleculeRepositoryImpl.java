@@ -9,10 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Repository
-public class MoleculeRepositoryImpl implements MoleculeRepository{
+public class MoleculeRepositoryImpl implements MoleculeRepository {
 
     private final SimpleJdbcInsert simpleJdbcInsert;
     private final JdbcTemplate jdbcTemplate;
@@ -24,19 +23,18 @@ public class MoleculeRepositoryImpl implements MoleculeRepository{
     }
 
     @Override
-    public Optional<Molecule> save(Molecule molecule) {
+    public Molecule save(Molecule molecule) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("m", molecule.getStructure());
         simpleJdbcInsert.execute(parameters);
-        return Optional.of(molecule);
+        return molecule;
     }
 
     @Override
-    public Optional<List<Molecule>> searchBySubstructure(Molecule smilesMol) {
+    public List<Molecule> searchBySubstructure(Molecule smilesMol) {
         final String SQL = "SELECT * FROM mols WHERE m@> ?::mol ";
-        List <Molecule> details = jdbcTemplate.query(
+        return jdbcTemplate.query(
                 SQL, preparedStatement -> preparedStatement.setObject(1, smilesMol.getStructure()),
                 new MoleculeRowMapper());
-        return Optional.of(details);
     }
 }
