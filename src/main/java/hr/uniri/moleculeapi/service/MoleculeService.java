@@ -15,5 +15,5 @@ public interface MoleculeService {
 
     Optional<Molecule> save(Molecule molecule);
 
-    Optional<List<Molecule>> substructureSearch(Molecule smilesMol);
+    Optional<List<Molecule>> substructureSearch(Molecule molecule);
 }

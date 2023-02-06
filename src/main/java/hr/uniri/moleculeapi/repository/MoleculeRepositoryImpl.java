@@ -3,12 +3,12 @@ package hr.uniri.moleculeapi.repository;
 import hr.uniri.moleculeapi.model.Molecule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class MoleculeRepositoryImpl implements MoleculeRepository {
@@ -24,17 +24,18 @@ public class MoleculeRepositoryImpl implements MoleculeRepository {
 
     @Override
     public Molecule save(Molecule molecule) {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("m", molecule.getStructure());
-        simpleJdbcInsert.execute(parameters);
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("m", molecule.getStructure());
+        Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
+        molecule.setId(id.intValue());
         return molecule;
     }
 
     @Override
-    public List<Molecule> searchBySubstructure(Molecule smilesMol) {
+    public List<Molecule> searchBySubstructure(Molecule molecule) {
         final String SQL = "SELECT * FROM mols WHERE m@> ?::mol ";
         return jdbcTemplate.query(
-                SQL, preparedStatement -> preparedStatement.setObject(1, smilesMol.getStructure()),
+                SQL, preparedStatement -> preparedStatement.setObject(1, molecule.getStructure()),
                 new MoleculeRowMapper());
     }
 }

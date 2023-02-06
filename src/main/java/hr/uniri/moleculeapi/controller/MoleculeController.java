@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("molecule")
@@ -25,7 +23,7 @@ public class MoleculeController {
     @GetMapping
     public @ResponseBody ResponseEntity<List<Molecule>> getAllMolecules() {
         return moleculeService.findAll().map(
-                molecule -> ResponseEntity.ok().body(molecule))
+                        molecule -> ResponseEntity.ok().body(molecule))
                 .orElseGet(
                         () -> ResponseEntity.notFound().build()
                 );
@@ -34,7 +32,7 @@ public class MoleculeController {
     @GetMapping("/{id}")
     public @ResponseBody ResponseEntity<Molecule> findMoleculeById(@PathVariable final Integer id) {
         return moleculeService.findMoleculeById(id).map(
-                molecule -> ResponseEntity.ok().body(molecule))
+                        molecule -> ResponseEntity.ok().body(molecule))
                 .orElseGet(
                         () -> ResponseEntity.notFound().build()
                 );
@@ -60,8 +58,8 @@ public class MoleculeController {
     @GetMapping("/search")
     public ResponseEntity<List<Molecule>> substructureSearchMolecule(@RequestBody final Molecule molecule) {
         return moleculeService.substructureSearch(molecule).map(
-                moleculeList -> ResponseEntity.ok()
-                        .body(moleculeList))
+                        moleculeList -> ResponseEntity.ok()
+                                .body(moleculeList))
                 .orElse(ResponseEntity.notFound()
                         .build()
                 );

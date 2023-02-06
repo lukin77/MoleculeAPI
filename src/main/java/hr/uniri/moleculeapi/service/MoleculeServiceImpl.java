@@ -47,7 +47,7 @@ public class MoleculeServiceImpl implements MoleculeService {
     }
 
     @Override
-    public Optional<List<Molecule>> substructureSearch(Molecule smilesMol) {
-        return Optional.ofNullable(moleculeRepository.searchBySubstructure(smilesMol));
+    public Optional<List<Molecule>> substructureSearch(Molecule molecule) {
+        return Optional.ofNullable(moleculeRepository.searchBySubstructure(molecule));
     }
 }

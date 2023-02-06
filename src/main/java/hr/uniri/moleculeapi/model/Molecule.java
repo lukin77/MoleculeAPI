@@ -19,4 +19,8 @@ public class Molecule {
 
     @Column(name = "m")
     private String structure;
+
+    public Molecule(String structure) {
+        this.structure = structure;
+    }
 }
