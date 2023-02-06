@@ -1,6 +1,5 @@
 package hr.uniri.moleculeapi.controller;
 
-import hr.uniri.moleculeapi.model.Mol;
 import hr.uniri.moleculeapi.model.Molecule;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

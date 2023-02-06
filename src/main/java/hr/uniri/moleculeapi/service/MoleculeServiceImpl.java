@@ -50,8 +50,6 @@ public class MoleculeServiceImpl implements MoleculeService {
 
     @Override
     public ResponseEntity<List<Molecule>> substructureSearch(Molecule smilesMol) {
-//        Optional<List<Molecule>> moleculeList = moleculeJpaRepository.searchMoleculesByStructureContainingNative(smilesMol);
-
         Optional<List<Molecule>> moleculeList = moleculeRepository.searchBySubstructure(smilesMol);
         return moleculeList.map(molecules -> ResponseEntity.ok().body(molecules)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 

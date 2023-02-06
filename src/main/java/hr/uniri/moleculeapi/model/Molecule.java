@@ -18,6 +18,5 @@ public class Molecule {
     private Integer id;
 
     @Column(name = "m")
-    @Embedded
-    private Mol mol;
+    private String structure;
 }
