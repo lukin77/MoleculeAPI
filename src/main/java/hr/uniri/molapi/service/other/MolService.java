@@ -1,4 +1,4 @@
-package hr.uniri.molapi.service;
+package hr.uniri.molapi.service.other;
 
 import hr.uniri.molapi.model.Mol;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-public interface molService {
+public interface MolService {
     Optional<List<Mol>> findAll();
 
     Optional<Mol> findMolById(Integer id);

@@ -1,7 +1,7 @@
-package hr.uniri.molapi.controller;
+package hr.uniri.molapi.controller.other;
 
 import hr.uniri.molapi.model.Mol;
-import hr.uniri.molapi.service.molService;
+import hr.uniri.molapi.service.other.MolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping("general-mol")
 public class GeneralMolController {
 
-    private final molService molService;
+    private final MolService molService;
 
     @Autowired
-    public GeneralMolController(molService molService) {
+    public GeneralMolController(MolService molService) {
         this.molService = molService;
     }
 
@@ -54,5 +54,12 @@ public class GeneralMolController {
                         .build()
         );
     }
+
+    /*
+    @PostMapping("/search")
+    public ResponseEntity<List<Mol>> substructureSearchMol(@RequestBody final Mol mol) {
+        return executeSubstrutureSearch(mol, molService::substructureSearch);
+    }
+     */
 
 }

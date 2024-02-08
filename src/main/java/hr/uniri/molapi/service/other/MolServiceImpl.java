@@ -1,4 +1,4 @@
-package hr.uniri.molapi.service;
+package hr.uniri.molapi.service.other;
 
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.repository.MolJpaRepository;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class molServiceImpl implements molService {
+public class MolServiceImpl implements MolService {
 
     private final MolJpaRepository molJpaRepository;
     private final MolRepository molRepository;
 
     @Autowired
-    public molServiceImpl(MolJpaRepository molJpaRepository, MolRepository molRepository) {
+    public MolServiceImpl(MolJpaRepository molJpaRepository, MolRepository molRepository) {
         this.molJpaRepository = molJpaRepository;
         this.molRepository = molRepository;
     }
