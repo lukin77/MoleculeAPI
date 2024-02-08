@@ -1,4 +1,4 @@
-package hr.uniri.molapi.repository;
+package hr.uniri.molapi.repository.other;
 
 import hr.uniri.molapi.model.Mol;
 import org.springframework.beans.factory.annotation.Autowired;
