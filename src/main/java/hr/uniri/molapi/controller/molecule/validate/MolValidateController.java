@@ -1,7 +1,6 @@
 package hr.uniri.molapi.controller.molecule.validate;
 
 import hr.uniri.molapi.service.molecule.validate.MolValidateService;
-import hr.uniri.molapi.utils.StringFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,28 +21,26 @@ public class MolValidateController {
 
     @PostMapping("/isValidSmiles")
     public ResponseEntity<Boolean> isValidSmiles(@RequestBody final String smiles) {
-        return executeInputOutputFunction(smiles, molValidateService::isValidSmiles);
+        return ResponseEntity.ok(molValidateService.isValidSmiles(smiles));
     }
 
     //is_valid_ctab
     @PostMapping("/isValidCtab")
     public ResponseEntity<Boolean> isValidCtab(@RequestBody final String ctab) {
-        return executeInputOutputFunction(ctab, molValidateService::isValidCtab);
+        return ResponseEntity.ok(molValidateService.isValidCtab(ctab));
     }
 
     //is_valid_smarts
     @PostMapping("/isValidSmarts")
     public ResponseEntity<Boolean> isValidSmarts(@RequestBody final String smarts) {
-        return executeInputOutputFunction(smarts, molValidateService::isValidSmarts);
+        return ResponseEntity.ok(molValidateService.isValidSmarts(smarts));
     }
 
     //is_valid_mol_pkl
     @PostMapping("/isValidMolPkl")
     public ResponseEntity<Boolean> isValidMolPk(@RequestBody final String molPkl) {
-        return executeInputOutputFunction(molPkl, molValidateService::isValidMolPk);
+        return ResponseEntity.ok(molValidateService.isValidMolPk(molPkl));
     }
 
-    private ResponseEntity<Boolean> executeInputOutputFunction(String param, StringFunction function) {
-        return ResponseEntity.ok(function.apply(param));
-    }
+
 }

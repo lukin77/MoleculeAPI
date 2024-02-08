@@ -1,8 +1,8 @@
 package hr.uniri.molapi.service.other;
 
 import hr.uniri.molapi.model.Mol;
-import hr.uniri.molapi.repository.other.GeneralMolJpaRepository;
-import hr.uniri.molapi.repository.other.GeneralMolRepository;
+import hr.uniri.molapi.repository.molecule.other.GeneralMolJpaRepository;
+import hr.uniri.molapi.repository.molecule.other.GeneralMolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
