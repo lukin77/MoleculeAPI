@@ -1,6 +1,6 @@
 package hr.uniri.molapi.utils;
 
 @FunctionalInterface
-public interface MolInputOutputFunction {
+public interface StringFunction {
     Boolean apply(String smiles);
 }

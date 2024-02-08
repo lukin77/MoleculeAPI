@@ -2,8 +2,8 @@ package hr.uniri.molapi.controller.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.service.fingerprint.generate.FpGenerateService;
-import hr.uniri.molapi.utils.FingerprintFunction;
-import hr.uniri.molapi.utils.FingerprintWithRadiusFunction;
+import hr.uniri.molapi.utils.MolFunction;
+import hr.uniri.molapi.utils.MolRadiusFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -79,13 +79,13 @@ public class FpGenerateController {
         return executeGenerateFP(mol, fpGenerateService::maccsFp);
     }
 
-    private ResponseEntity<String> executeGenerateFP(Mol mol, FingerprintFunction function) {
+    private ResponseEntity<String> executeGenerateFP(Mol mol, MolFunction function) {
         return function.apply(mol)
                 .map(fingerprint -> ResponseEntity.ok().body(fingerprint))
                 .orElse(ResponseEntity.noContent().build());
     }
 
-    private ResponseEntity<String> executeGenerateFP(Mol mol, Integer radius, FingerprintWithRadiusFunction function) {
+    private ResponseEntity<String> executeGenerateFP(Mol mol, Integer radius, MolRadiusFunction function) {
         return function.apply(mol, radius)
                 .map(molList -> ResponseEntity.ok().body(molList))
                 .orElse(ResponseEntity.noContent().build());

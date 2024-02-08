@@ -2,11 +2,9 @@ package hr.uniri.molapi.utils;
 
 import hr.uniri.molapi.model.Mol;
 
-import java.util.List;
 import java.util.Optional;
 
 @FunctionalInterface
-public interface FingerprintFunction {
-    Optional<String> apply(Mol mol);
-
+public interface MolRadiusFunction {
+    Optional<String> apply(Mol mol, Integer radius);
 }

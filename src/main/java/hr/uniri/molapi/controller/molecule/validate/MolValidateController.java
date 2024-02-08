@@ -1,7 +1,7 @@
 package hr.uniri.molapi.controller.molecule.validate;
 
 import hr.uniri.molapi.service.molecule.validate.MolValidateService;
-import hr.uniri.molapi.utils.MolInputOutputFunction;
+import hr.uniri.molapi.utils.StringFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,7 +43,7 @@ public class MolValidateController {
         return executeInputOutputFunction(molPkl, molValidateService::isValidMolPk);
     }
 
-    private ResponseEntity<Boolean> executeInputOutputFunction(String param, MolInputOutputFunction function) {
+    private ResponseEntity<Boolean> executeInputOutputFunction(String param, StringFunction function) {
         return ResponseEntity.ok(function.apply(param));
     }
 }
