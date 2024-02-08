@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>hr.uniri</groupId>
-    <artifactId>MoleculeAPI</artifactId>
+    <artifactId>MolAPI</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MoleculeAPI</name>
-    <description>MoleculeAPI</description>
+    <name>MolAPI</name>
+    <description>MolAPI</description>
     <properties>
         <java.version>17</java.version>
     </properties>
