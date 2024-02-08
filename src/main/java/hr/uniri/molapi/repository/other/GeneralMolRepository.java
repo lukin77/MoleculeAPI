@@ -4,7 +4,7 @@ import hr.uniri.molapi.model.Mol;
 
 import java.util.List;
 
-public interface MolRepository {
+public interface GeneralMolRepository {
 
     Mol save(Mol Mol);
 

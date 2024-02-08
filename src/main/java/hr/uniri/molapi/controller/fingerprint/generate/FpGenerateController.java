@@ -2,7 +2,6 @@ package hr.uniri.molapi.controller.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.service.fingerprint.generate.FpGenerateService;
-import hr.uniri.molapi.service.other.MolService;
 import hr.uniri.molapi.utils.FingerprintFunction;
 import hr.uniri.molapi.utils.FingerprintWithRadiusFunction;
 import org.springframework.beans.factory.annotation.Autowired;

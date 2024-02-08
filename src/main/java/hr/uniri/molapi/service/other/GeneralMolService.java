@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
-public interface MolService {
+public interface GeneralMolService {
     Optional<List<Mol>> findAll();
 
     Optional<Mol> findMolById(Integer id);

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class MolRepositoryImpl implements MolRepository {
+public class GeneralMolRepositoryImpl implements GeneralMolRepository {
 
     private final SimpleJdbcInsert simpleJdbcInsert;
     private final JdbcTemplate jdbcTemplate;
@@ -20,7 +20,7 @@ public class MolRepositoryImpl implements MolRepository {
     private static final String MOL_TYPE = "::mol";
 
     @Autowired
-    public MolRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public GeneralMolRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName(MOLS_TABLE).usingGeneratedKeyColumns("id");
     }
