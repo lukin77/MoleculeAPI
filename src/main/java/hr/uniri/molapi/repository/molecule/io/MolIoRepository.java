@@ -1,9 +1,8 @@
-package hr.uniri.molapi.service.molecule.io;
+package hr.uniri.molapi.repository.molecule.io;
 
 import hr.uniri.molapi.model.Mol;
 
-public interface MolIoService {
-
+public interface MolIoRepository {
     Mol molFromSmiles(String smiles);
 
     Mol molFromSmarts(String smarts);
@@ -26,9 +25,9 @@ public interface MolIoService {
 
     String molToPkl(Mol mol);
 
-    String molToCtab(Mol mol, boolean bool, boolean bool2);
+    String molToCtab(Mol mol);
 
-    String molToV3kctab(Mol mol, boolean bool);
+    String molToV3kctab(Mol mol);
 
     String molToSvg(Mol mol);
 

@@ -2,11 +2,11 @@ package hr.uniri.molapi.controller.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.service.fingerprint.generate.FpGenerateService;
-import hr.uniri.molapi.utils.MolFunction;
-import hr.uniri.molapi.utils.MolRadiusFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("fp/generate")
@@ -90,4 +90,15 @@ public class FpGenerateController {
                 .map(molList -> ResponseEntity.ok().body(molList))
                 .orElse(ResponseEntity.noContent().build());
     }
+}
+
+@FunctionalInterface
+interface MolFunction {
+    Optional<String> apply(Mol mol);
+
+}
+
+@FunctionalInterface
+interface MolRadiusFunction {
+    Optional<String> apply(Mol mol, Integer radius);
 }
