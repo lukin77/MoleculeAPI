@@ -26,7 +26,7 @@ public class MolIoServiceImpl implements MolIoService {
     }
 
     @Override
-    public Mol molFromCtab(String ctab, boolean bool) {
+    public Mol molFromCtab(String ctab, Boolean bool) {
         return executeInputOutputFunction(ctab, bool, molIoRepository::molFromCtab);
     }
 
@@ -41,7 +41,7 @@ public class MolIoServiceImpl implements MolIoService {
     }
 
     @Override
-    public Mol qmolFromCtab(String ctab, boolean bool) {
+    public Mol qmolFromCtab(String ctab, Boolean bool) {
         return executeInputOutputFunction(ctab, bool, molIoRepository::qmolFromCtab);
     }
 
@@ -71,12 +71,12 @@ public class MolIoServiceImpl implements MolIoService {
     }
 
     @Override
-    public String molToCtab(Mol mol, boolean bool, boolean bool2) {
+    public String molToCtab(Mol mol, Boolean bool, Boolean bool2) {
         return executeInputOutputFunction(mol, molIoRepository::molToCtab);
     }
 
     @Override
-    public String molToV3kctab(Mol mol, boolean bool) {
+    public String molToV3kctab(Mol mol, Boolean bool) {
         return executeInputOutputFunction(mol, molIoRepository::molToV3kctab);
     }
 
@@ -95,31 +95,26 @@ public class MolIoServiceImpl implements MolIoService {
         return executeInputOutputFunction(mol, molIoRepository::molFromJson);
     }
 
-    private Mol executeInputOutputFunction(String param, GivenStringReturnMolFunction function) {
+    private Mol executeInputOutputFunction(String param, InputOutputFunction<String, Mol> function) {
         return function.apply(param);
     }
 
-    private Mol executeInputOutputFunction(String param, boolean bool, GivenStringAndBoolReturnMol function) {
+    private Mol executeInputOutputFunction(String param, Boolean bool, InputOutputFunctionWithExtraArgument<String, Boolean, Mol> function) {
         return function.apply(param, bool);
     }
 
 
-    private String executeInputOutputFunction(Mol param, GivenMolReturnStringFunction function) {
+    private String executeInputOutputFunction(Mol param, InputOutputFunction<Mol, String> function) {
         return function.apply(param);
     }
 }
 
 @FunctionalInterface
-interface GivenMolReturnStringFunction {
-    String apply(Mol smiles);
+interface InputOutputFunction<T, R> {
+    R apply(T smiles);
 }
 
 @FunctionalInterface
-interface GivenStringAndBoolReturnMol {
-    Mol apply(String smiles, boolean bool);
-}
-
-@FunctionalInterface
-interface GivenStringReturnMolFunction {
-    Mol apply(String smiles);
+interface InputOutputFunctionWithExtraArgument<T, U, R> {
+    R apply(T smiles, U bool);
 }

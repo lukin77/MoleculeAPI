@@ -27,7 +27,7 @@ public class MolInputOutputController {
     }
 
     @PostMapping("/molFromCtab")
-    public ResponseEntity<Mol> molFromCtab(@RequestBody final String ctab, @RequestParam final boolean bool) {
+    public ResponseEntity<Mol> molFromCtab(@RequestBody final String ctab, @RequestParam final Boolean bool) {
         return ResponseEntity.ok(molIoService.molFromCtab(ctab, bool));
     }
 
@@ -42,7 +42,7 @@ public class MolInputOutputController {
     }
 
     @PostMapping("/qmolFromCtab")
-    public ResponseEntity<Mol> qmolFromCtab(@RequestBody final String ctab, @RequestParam final boolean bool) {
+    public ResponseEntity<Mol> qmolFromCtab(@RequestBody final String ctab, @RequestParam final Boolean bool) {
         return ResponseEntity.ok(molIoService.qmolFromCtab(ctab, bool));
     }
 
@@ -72,12 +72,12 @@ public class MolInputOutputController {
     }
 
     @PostMapping("/molToCtab")
-    public ResponseEntity<String> molToCtab(@RequestBody final Mol mol, @RequestParam final boolean bool, @RequestParam final boolean bool2) {
+    public ResponseEntity<String> molToCtab(@RequestBody final Mol mol, @RequestParam final Boolean bool, @RequestParam final Boolean bool2) {
         return ResponseEntity.ok(molIoService.molToCtab(mol, bool, bool2));
     }
 
     @PostMapping("/molToV3kctab")
-    public ResponseEntity<String> molToV3kctab(@RequestBody final Mol mol, @RequestParam final boolean bool) {
+    public ResponseEntity<String> molToV3kctab(@RequestBody final Mol mol, @RequestParam final Boolean bool) {
         return ResponseEntity.ok(molIoService.molToV3kctab(mol, bool));
     }
 

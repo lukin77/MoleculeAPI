@@ -7,13 +7,13 @@ public interface MolIoRepository {
 
     Mol molFromSmarts(String smarts);
 
-    Mol molFromCtab(String ctab, boolean bool);
+    Mol molFromCtab(String ctab, Boolean bool);
 
     Mol molFromPkl(String pkl);
 
     Mol qmolFromSmiles(String smiles);
 
-    Mol qmolFromCtab(String ctab, boolean bool);
+    Mol qmolFromCtab(String ctab, Boolean bool);
 
     String molToSmiles(Mol mol);
 

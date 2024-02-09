@@ -28,7 +28,7 @@ public class MolIoRepositoryImpl implements MolIoRepository {
     }
 
     @Override
-    public Mol molFromCtab(String ctab, boolean bool) {
+    public Mol molFromCtab(String ctab, Boolean bool) {
         return simpleJdbcCall.withFunctionName("mol_from_ctab")
                 .executeFunction(Mol.class, ctab, bool);
     }
@@ -46,7 +46,7 @@ public class MolIoRepositoryImpl implements MolIoRepository {
     }
 
     @Override
-    public Mol qmolFromCtab(String ctab, boolean bool) {
+    public Mol qmolFromCtab(String ctab, Boolean bool) {
         return simpleJdbcCall.withFunctionName("qmol_from_ctab")
                 .executeFunction(Mol.class, ctab, bool);
     }

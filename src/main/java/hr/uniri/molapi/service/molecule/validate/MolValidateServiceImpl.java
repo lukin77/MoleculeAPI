@@ -35,12 +35,12 @@ public class MolValidateServiceImpl implements MolValidateService {
         return executeValidateFunction(molPk, molValidateRepository::isValidMolPk);
     }
 
-    private Boolean executeValidateFunction(String param, StringFunction function) {
-        return function.apply(param);
+    private Boolean executeValidateFunction(String param, Validate<String, Boolean> validate) {
+        return validate.apply(param);
     }
 }
 
 @FunctionalInterface
-interface StringFunction {
-    Boolean apply(String smiles);
+interface Validate<T, R> {
+    R apply(T smiles);
 }

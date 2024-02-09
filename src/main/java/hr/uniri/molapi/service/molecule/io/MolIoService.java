@@ -8,13 +8,13 @@ public interface MolIoService {
 
     Mol molFromSmarts(String smarts);
 
-    Mol molFromCtab(String ctab, boolean bool);
+    Mol molFromCtab(String ctab, Boolean bool);
 
     Mol molFromPkl(String pkl);
 
     Mol qmolFromSmiles(String smiles);
 
-    Mol qmolFromCtab(String ctab, boolean bool);
+    Mol qmolFromCtab(String ctab, Boolean bool);
 
     String molToSmiles(Mol mol);
 
@@ -26,9 +26,9 @@ public interface MolIoService {
 
     String molToPkl(Mol mol);
 
-    String molToCtab(Mol mol, boolean bool, boolean bool2);
+    String molToCtab(Mol mol, Boolean bool, Boolean bool2);
 
-    String molToV3kctab(Mol mol, boolean bool);
+    String molToV3kctab(Mol mol, Boolean bool);
 
     String molToSvg(Mol mol);
 
