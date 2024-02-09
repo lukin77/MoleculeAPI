@@ -74,6 +74,6 @@ class MolControllerTest {
 
         Mol savedMol = molResponseEntity.getBody();
         assertNotNull(savedMol);
-        assertEquals(savedMol.getStructure(), Mol.getStructure());
+        assertEquals(savedMol.getSmiles(), Mol.getSmiles());
     }
 }

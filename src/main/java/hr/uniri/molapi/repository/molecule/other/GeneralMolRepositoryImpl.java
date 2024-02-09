@@ -34,7 +34,7 @@ public class GeneralMolRepositoryImpl implements GeneralMolRepository {
     @Override
     public Mol save(Mol Mol) {
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("m", Mol.getStructure());
+                .addValue("m", Mol.getSmiles());
         Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
         Mol.setId(id.intValue());
         return Mol;
@@ -47,7 +47,7 @@ public class GeneralMolRepositoryImpl implements GeneralMolRepository {
     public List<Mol> searchBySubstructure(Mol Mol) {
         final String SQL = "SELECT * FROM " + MOLS_TABLE + " WHERE m@> ?::mol ";
         return jdbcTemplate.query(
-                SQL, preparedStatement -> preparedStatement.setObject(1, Mol.getStructure()),
+                SQL, preparedStatement -> preparedStatement.setObject(1, Mol.getSmiles()),
                 new MolRowMapper());
     }
 

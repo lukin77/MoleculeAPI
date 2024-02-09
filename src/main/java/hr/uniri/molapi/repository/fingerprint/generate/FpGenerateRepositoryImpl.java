@@ -18,46 +18,54 @@ public class FpGenerateRepositoryImpl implements FpGenerateRepository {
     @Override
     public PGobject morganFp(Mol mol, String radius) {
         return simpleJdbcCall.withFunctionName("morgan_fp")
-                .executeFunction(PGobject.class, mol.getStructure(), radius);
+                .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public String morganbvFp(Mol mol, String radius) {
-        return null;
+    public PGobject morganbvFp(Mol mol, String radius) {
+        return simpleJdbcCall.withFunctionName("morganbv_fp")
+                .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public String featmorganFp(Mol mol, String radius) {
-        return null;
+    public PGobject featmorganFp(Mol mol, String radius) {
+        return simpleJdbcCall.withFunctionName("featmorgan_fp")
+                .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public String featmorganbvFp(Mol mol, String radius) {
-        return null;
+    public PGobject featmorganbvFp(Mol mol, String radius) {
+        return simpleJdbcCall.withFunctionName("featmorganbv_fp")
+                .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public String rdkitFp(Mol mol) {
-        return null;
+    public PGobject rdkitFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("rdkit_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
     }
 
     @Override
-    public String atompairFp(Mol mol) {
-        return null;
+    public PGobject atompairFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("atompair_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
     }
 
     @Override
-    public String torsionFp(Mol mol) {
-        return null;
+    public PGobject torsionFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("torsion_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
     }
 
     @Override
-    public String layeredFp(Mol mol) {
-        return null;
+    public PGobject layeredFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("layered_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
     }
 
     @Override
-    public String maccsFp(Mol mol) {
-        return null;
+    public PGobject maccsFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("maccs_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
     }
 }

@@ -18,9 +18,9 @@ public class Mol {
     private Integer id;
 
     @Column(name = "m")
-    private String structure;
+    private String smiles;
 
-    public Mol(String structure) {
-        this.structure = structure;
+    public Mol(String smiles) {
+        this.smiles = smiles;
     }
 }

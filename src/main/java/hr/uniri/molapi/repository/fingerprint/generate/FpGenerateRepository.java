@@ -6,19 +6,19 @@ import org.postgresql.util.PGobject;
 public interface FpGenerateRepository {
     PGobject morganFp(Mol mol, String radius);
 
-    String morganbvFp(Mol mol, String radius);
+    PGobject morganbvFp(Mol mol, String radius);
 
-    String featmorganFp(Mol mol, String radius);
+    PGobject featmorganFp(Mol mol, String radius);
 
-    String featmorganbvFp(Mol mol, String radius);
+    PGobject featmorganbvFp(Mol mol, String radius);
 
-    String rdkitFp(Mol mol);
+    PGobject rdkitFp(Mol mol);
 
-    String atompairFp(Mol mol);
+    PGobject atompairFp(Mol mol);
 
-    String torsionFp(Mol mol);
+    PGobject torsionFp(Mol mol);
 
-    String layeredFp(Mol mol);
+    PGobject layeredFp(Mol mol);
 
-    String maccsFp(Mol mol);
+    PGobject maccsFp(Mol mol);
 }
