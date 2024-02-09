@@ -1,9 +1,8 @@
-package hr.uniri.molapi.service.fingerprint.generate;
+package hr.uniri.molapi.repository.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
 
-public interface FpGenerateService {
-
+public interface FpGenerateRepository {
     String morganFp(Mol mol, String radius);
 
     String morganbvFp(Mol mol, String radius);
