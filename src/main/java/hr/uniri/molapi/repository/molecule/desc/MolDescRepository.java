@@ -1,9 +1,8 @@
-package hr.uniri.molapi.service.molecule.desc;
+package hr.uniri.molapi.repository.molecule.desc;
 
 import hr.uniri.molapi.model.Mol;
 
-public interface MolDescService {
-
+public interface MolDescRepository {
     Double molAmw(Mol mol);
 
     Double molExactMw(Mol mol);
@@ -55,8 +54,4 @@ public interface MolDescService {
     String molInchi(Mol mol);
 
     String molInchikey(Mol mol);
-
-    String molFormula(Mol mol, Boolean bool1, Boolean bool2);
-
-    String molNmHash(Mol mol, String hashType);
 }
