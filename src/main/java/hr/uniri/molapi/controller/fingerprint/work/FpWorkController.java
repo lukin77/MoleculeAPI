@@ -2,12 +2,13 @@ package hr.uniri.molapi.controller.fingerprint.work;
 
 import hr.uniri.molapi.model.FingerprintsRequest;
 import hr.uniri.molapi.service.fingerprint.work.FpWorkService;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("fingerprint/work")
+@RequestMapping("fp/work")
 public class FpWorkController {
     private final FpWorkService fpWorkService;
 
@@ -32,12 +33,12 @@ public class FpWorkController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> add(@RequestBody final FingerprintsRequest fingerprintsRequest) {
+    public ResponseEntity<PGobject> add(@RequestBody final FingerprintsRequest fingerprintsRequest) {
         return ResponseEntity.ok().body(fpWorkService.add(fingerprintsRequest));
     }
 
     @PostMapping("/subtract")
-    public ResponseEntity<String> subtract(@RequestBody final FingerprintsRequest fingerprintsRequest) {
+    public ResponseEntity<PGobject> subtract(@RequestBody final FingerprintsRequest fingerprintsRequest) {
         return ResponseEntity.ok().body(fpWorkService.subtract(fingerprintsRequest));
     }
 

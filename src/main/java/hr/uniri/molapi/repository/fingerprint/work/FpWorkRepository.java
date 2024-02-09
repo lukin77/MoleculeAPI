@@ -1,5 +1,7 @@
 package hr.uniri.molapi.repository.fingerprint.work;
 
+import org.postgresql.util.PGobject;
+
 public interface FpWorkRepository {
     Double tanimotoSml(String fp1, String fp2);
 
@@ -7,9 +9,9 @@ public interface FpWorkRepository {
 
     Integer size(String fp);
 
-    String add(String fp1, String fp2);
+    PGobject add(String fp1, String fp2);
 
-    String subtract(String fp1, String fp2);
+    PGobject subtract(String fp1, String fp2);
 
     Boolean allValuesLt(String fp1, Integer lessThan);
 

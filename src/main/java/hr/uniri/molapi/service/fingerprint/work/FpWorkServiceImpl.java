@@ -2,6 +2,7 @@ package hr.uniri.molapi.service.fingerprint.work;
 
 import hr.uniri.molapi.model.FingerprintsRequest;
 import hr.uniri.molapi.repository.fingerprint.work.FpWorkRepository;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,23 +35,23 @@ public class FpWorkServiceImpl implements FpWorkService {
     }
 
     @Override
-    public String add(FingerprintsRequest fingerprintsRequest) {
+    public PGobject add(FingerprintsRequest fingerprintsRequest) {
         return executeWorkFunction(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::add);
     }
 
     @Override
-    public String subtract(FingerprintsRequest fingerprintsRequest) {
+    public PGobject subtract(FingerprintsRequest fingerprintsRequest) {
         return executeWorkFunction(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::subtract);
     }
 
     @Override
     public Boolean allValuesLt(String fp, String lessThan) {
-        return executeWorkFunction(fp, Integer.getInteger(lessThan), fpWorkRepository::allValuesLt);
+        return executeWorkFunction(fp, Integer.parseInt(lessThan), fpWorkRepository::allValuesLt);
     }
 
     @Override
     public Boolean allValuesGt(String fp, String greaterThan) {
-        return executeWorkFunction(fp, Integer.getInteger(greaterThan), fpWorkRepository::allValuesGt);
+        return executeWorkFunction(fp, Integer.parseInt(greaterThan), fpWorkRepository::allValuesGt);
     }
 
     private Integer executeWorkFunction(String fp, Function<String, Integer> function) {

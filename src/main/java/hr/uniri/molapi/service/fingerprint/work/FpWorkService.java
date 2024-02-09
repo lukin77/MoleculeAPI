@@ -1,6 +1,7 @@
 package hr.uniri.molapi.service.fingerprint.work;
 
 import hr.uniri.molapi.model.FingerprintsRequest;
+import org.postgresql.util.PGobject;
 
 public interface FpWorkService {
     Double tanimotoSml(FingerprintsRequest fingerprintsRequest);
@@ -9,9 +10,9 @@ public interface FpWorkService {
 
     Integer size(String fp);
 
-    String add(FingerprintsRequest fingerprintsRequest);
+    PGobject add(FingerprintsRequest fingerprintsRequest);
 
-    String subtract(FingerprintsRequest fingerprintsRequest);
+    PGobject subtract(FingerprintsRequest fingerprintsRequest);
 
     Boolean allValuesLt(String fp, String lessThan);
 
