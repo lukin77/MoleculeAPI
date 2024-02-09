@@ -1,4 +1,4 @@
-package hr.uniri.molapi.utils;
+package hr.uniri.molapi.service.utils;
 
 import hr.uniri.molapi.model.Mol;
 import org.springframework.jdbc.core.RowMapper;

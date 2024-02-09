@@ -5,6 +5,9 @@ import hr.uniri.molapi.repository.molecule.io.MolIoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 @Service
 public class MolIoServiceImpl implements MolIoService {
 
@@ -95,26 +98,15 @@ public class MolIoServiceImpl implements MolIoService {
         return executeInputOutputFunction(mol, molIoRepository::molFromJson);
     }
 
-    private Mol executeInputOutputFunction(String param, InputOutputFunction<String, Mol> function) {
+    private Mol executeInputOutputFunction(String param, Function<String, Mol> function) {
         return function.apply(param);
     }
 
-    private Mol executeInputOutputFunction(String param, Boolean bool, InputOutputFunctionWithExtraArgument<String, Boolean, Mol> function) {
+    private Mol executeInputOutputFunction(String param, Boolean bool, BiFunction<String, Boolean, Mol> function) {
         return function.apply(param, bool);
     }
 
-
-    private String executeInputOutputFunction(Mol param, InputOutputFunction<Mol, String> function) {
+    private String executeInputOutputFunction(Mol param, Function<Mol, String> function) {
         return function.apply(param);
     }
-}
-
-@FunctionalInterface
-interface InputOutputFunction<T, R> {
-    R apply(T smiles);
-}
-
-@FunctionalInterface
-interface InputOutputFunctionWithExtraArgument<T, U, R> {
-    R apply(T smiles, U bool);
 }

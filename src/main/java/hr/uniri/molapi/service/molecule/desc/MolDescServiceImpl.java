@@ -5,6 +5,8 @@ import hr.uniri.molapi.repository.molecule.desc.MolDescRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.function.Function;
+
 @Service
 public class MolDescServiceImpl implements MolDescService {
 
@@ -157,31 +159,7 @@ public class MolDescServiceImpl implements MolDescService {
         return null;
     }
 
-    private Double executeDescFunction(Mol mol, GivenMolReturnDouble function) {
+    private <T> T executeDescFunction(Mol mol, Function<Mol, T> function) {
         return function.apply(mol);
     }
-
-    private Integer executeDescFunction(Mol mol, GivenMolReturnInteger function) {
-        return function.apply(mol);
-    }
-
-    private String executeDescFunction(Mol mol, GivenMolReturnString function) {
-        return function.apply(mol);
-    }
-}
-
-
-@FunctionalInterface
-interface GivenMolReturnDouble {
-    Double apply(Mol mol);
-}
-
-@FunctionalInterface
-interface GivenMolReturnInteger {
-    Integer apply(Mol mol);
-}
-
-@FunctionalInterface
-interface GivenMolReturnString {
-    String apply(Mol mol);
 }

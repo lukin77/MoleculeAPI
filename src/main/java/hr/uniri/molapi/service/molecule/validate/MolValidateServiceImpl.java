@@ -4,6 +4,8 @@ import hr.uniri.molapi.repository.molecule.validate.MolValidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.function.Function;
+
 @Service
 public class MolValidateServiceImpl implements MolValidateService {
 
@@ -35,12 +37,7 @@ public class MolValidateServiceImpl implements MolValidateService {
         return executeValidateFunction(molPk, molValidateRepository::isValidMolPk);
     }
 
-    private Boolean executeValidateFunction(String param, Validate<String, Boolean> validate) {
+    private Boolean executeValidateFunction(String param, Function<String, Boolean> validate) {
         return validate.apply(param);
     }
-}
-
-@FunctionalInterface
-interface Validate<T, R> {
-    R apply(T smiles);
 }
