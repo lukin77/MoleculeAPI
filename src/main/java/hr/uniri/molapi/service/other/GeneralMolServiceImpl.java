@@ -50,4 +50,14 @@ public class GeneralMolServiceImpl implements GeneralMolService {
     public Optional<List<Mol>> substructureSearch(Mol Mol) {
         return Optional.ofNullable(generalMolRepository.searchBySubstructure(Mol));
     }
+
+    @Override
+    public String rdkitVersion() {
+        return generalMolRepository.rdkitVersion();
+    }
+
+    @Override
+    public String rdkitToolkitVersion() {
+        return generalMolRepository.rdkitToolkitVersion();
+    }
 }

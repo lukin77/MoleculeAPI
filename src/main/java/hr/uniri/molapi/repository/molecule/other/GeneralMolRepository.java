@@ -9,4 +9,8 @@ public interface GeneralMolRepository {
     Mol save(Mol Mol);
 
     List<Mol> searchBySubstructure(Mol smilesMol);
+
+    String rdkitVersion();
+
+    String rdkitToolkitVersion();
 }
