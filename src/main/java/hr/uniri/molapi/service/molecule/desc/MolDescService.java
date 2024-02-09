@@ -4,17 +4,17 @@ import hr.uniri.molapi.model.Mol;
 
 public interface MolDescService {
 
-    Double molAmw(Mol mol);
+    Float molAmw(Mol mol);
 
-    Double molExactMw(Mol mol);
+    Float molExactMw(Mol mol);
 
-    Double molLogP(Mol mol);
+    Float molLogP(Mol mol);
 
-    Double molTpsa(Mol mol);
+    Float molTpsa(Mol mol);
 
-    Double molLabuteAsa(Mol mol);
+    Float molLabuteAsa(Mol mol);
 
-    Double molFractionCsp3(Mol mol);
+    Float molFractionCsp3(Mol mol);
 
     Integer molHba(Mol mol);
 
@@ -52,9 +52,9 @@ public interface MolDescService {
 
     Integer molNumBridgeheadAtoms(Mol mol);
 
-    String molInchi(Mol mol);
+    Integer molInchi(Mol mol);
 
-    String molInchikey(Mol mol);
+    Integer molInchikey(Mol mol);
 
     String molFormula(Mol mol, Boolean bool1, Boolean bool2);
 

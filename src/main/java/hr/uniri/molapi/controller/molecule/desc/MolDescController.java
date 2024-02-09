@@ -18,32 +18,32 @@ public class MolDescController {
     }
 
     @PostMapping("/molAmw")
-    public ResponseEntity<Double> molAmw(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molAmw(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molAmw(mol));
     }
 
     @PostMapping("/molExactMw")
-    public ResponseEntity<Double> molExactMw(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molExactMw(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molExactMw(mol));
     }
 
     @PostMapping("/molLogP")
-    public ResponseEntity<Double> molLogP(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molLogP(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molLogP(mol));
     }
 
     @PostMapping("/molTpsa")
-    public ResponseEntity<Double> molTpsa(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molTpsa(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molTpsa(mol));
     }
 
     @PostMapping("/molLabuteAsa")
-    public ResponseEntity<Double> molLabuteAsa(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molLabuteAsa(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molLabuteAsa(mol));
     }
 
     @PostMapping("/molFractionCsp3")
-    public ResponseEntity<Double> molFractionCsp3(@RequestBody final Mol mol) {
+    public ResponseEntity<Float> molFractionCsp3(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molFractionCsp3(mol));
     }
 
@@ -137,13 +137,15 @@ public class MolDescController {
         return ResponseEntity.ok(molDescService.molNumBridgeheadAtoms(mol));
     }
 
+    // InChI not available
     @PostMapping("/molInchi")
-    public ResponseEntity<String> molInchi(@RequestBody final Mol mol) {
+    public ResponseEntity<Integer> molInchi(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molInchi(mol));
     }
 
+    // InChI not available
     @PostMapping("/molInchikey")
-    public ResponseEntity<String> molInchikey(@RequestBody final Mol mol) {
+    public ResponseEntity<Integer> molInchikey(@RequestBody final Mol mol) {
         return ResponseEntity.ok(molDescService.molInchikey(mol));
     }
 

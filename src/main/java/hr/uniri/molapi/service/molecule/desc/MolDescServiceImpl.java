@@ -18,32 +18,32 @@ public class MolDescServiceImpl implements MolDescService {
     }
 
     @Override
-    public Double molAmw(Mol mol) {
+    public Float molAmw(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molAmw);
     }
 
     @Override
-    public Double molExactMw(Mol mol) {
+    public Float molExactMw(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molExactMw);
     }
 
     @Override
-    public Double molLogP(Mol mol) {
+    public Float molLogP(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molLogP);
     }
 
     @Override
-    public Double molTpsa(Mol mol) {
+    public Float molTpsa(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molTpsa);
     }
 
     @Override
-    public Double molLabuteAsa(Mol mol) {
+    public Float molLabuteAsa(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molLabuteAsa);
     }
 
     @Override
-    public Double molFractionCsp3(Mol mol) {
+    public Float molFractionCsp3(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molFractionCsp3);
     }
 
@@ -138,12 +138,12 @@ public class MolDescServiceImpl implements MolDescService {
     }
 
     @Override
-    public String molInchi(Mol mol) {
+    public Integer molInchi(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molInchi);
     }
 
     @Override
-    public String molInchikey(Mol mol) {
+    public Integer molInchikey(Mol mol) {
         return executeDescFunction(mol, molDescRepository::molInchikey);
     }
 
