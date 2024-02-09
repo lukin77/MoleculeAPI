@@ -22,23 +22,23 @@ public class FpGenerateController {
     }
 
     @PostMapping("/morganFp")
-    public ResponseEntity<String> morganFp(@RequestBody final Mol mol, @RequestParam(name = "radius", value = DEFAULT_RADIUS, required = false) String radius) {
+    public ResponseEntity<String> morganFp(@RequestBody final Mol mol, @RequestParam(defaultValue = DEFAULT_RADIUS, required = false) String radius) {
         return ResponseEntity.ok().body(fpGenerateService.morganFp(mol, radius));
     }
 
     @PostMapping("/morganbvFp")
-    public ResponseEntity<String> morganbvFp(@RequestBody final Mol mol, @RequestParam(name = "radius", value = DEFAULT_RADIUS, required = false) String radius) {
+    public ResponseEntity<String> morganbvFp(@RequestBody final Mol mol, @RequestParam(defaultValue = DEFAULT_RADIUS, required = false) String radius) {
         return ResponseEntity.ok().body(fpGenerateService.morganbvFp(mol, radius));
     }
 
 
     @PostMapping("/featmorgan_fp")
-    public ResponseEntity<String> featmorganFp(@RequestBody final Mol mol, @RequestParam(name = "radius", value = DEFAULT_RADIUS, required = false) String radius) {
+    public ResponseEntity<String> featmorganFp(@RequestBody final Mol mol, @RequestParam(defaultValue = DEFAULT_RADIUS, required = false) String radius) {
         return ResponseEntity.ok().body(fpGenerateService.featmorganFp(mol, radius));
     }
 
     @PostMapping("/featmorganbv_fp")
-    public ResponseEntity<String> featmorganbvFp(@RequestBody final Mol mol, @RequestParam(name = "radius", value = DEFAULT_RADIUS, required = false) String radius) {
+    public ResponseEntity<String> featmorganbvFp(@RequestBody final Mol mol, @RequestParam(defaultValue = DEFAULT_RADIUS, required = false) String radius) {
         return ResponseEntity.ok().body(fpGenerateService.featmorganbvFp(mol, radius));
     }
 

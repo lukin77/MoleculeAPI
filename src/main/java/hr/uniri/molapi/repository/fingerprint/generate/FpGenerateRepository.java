@@ -1,9 +1,10 @@
 package hr.uniri.molapi.repository.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
+import org.postgresql.util.PGobject;
 
 public interface FpGenerateRepository {
-    String morganFp(Mol mol, String radius);
+    PGobject morganFp(Mol mol, String radius);
 
     String morganbvFp(Mol mol, String radius);
 

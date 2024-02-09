@@ -2,11 +2,11 @@ package hr.uniri.molapi.service.fingerprint.generate;
 
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.repository.fingerprint.generate.FpGenerateRepository;
+import org.hibernate.dialect.PostgreSQLPGObjectJdbcType;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -22,7 +22,9 @@ public class FpGenerateServiceImpl implements FpGenerateService {
 
     @Override
     public String morganFp(Mol mol, String radius) {
-        return executeGenerateFunction(mol, radius, fpGenerateRepository::morganFp);
+//        return executeGenerateFunction(mol, radius, fpGenerateRepository::morganFp);
+        PGobject morganFp = fpGenerateRepository.morganFp(mol, radius);
+        return null;
     }
 
     @Override
