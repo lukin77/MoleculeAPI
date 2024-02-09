@@ -1,4 +1,4 @@
-package hr.uniri.molapi.repository.molecule.other;
+package hr.uniri.molapi.repository.other;
 
 import hr.uniri.molapi.model.Mol;
 
