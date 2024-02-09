@@ -44,8 +44,8 @@ public class GeneralMolController {
     }
 
     @PostMapping
-    public ResponseEntity<Mol> saveMol(@RequestBody final Mol Mol) {
-        return generalMolService.save(Mol).map(
+    public ResponseEntity<Mol> saveMol(@RequestBody final Mol mol) {
+        return generalMolService.save(mol).map(
                 mol1 -> ResponseEntity
                         .status(HttpStatus.CREATED)
                         .body(mol1)
