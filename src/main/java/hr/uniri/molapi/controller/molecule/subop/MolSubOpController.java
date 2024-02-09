@@ -26,7 +26,7 @@ public class MolSubOpController {
     }
 
     @PostMapping("/substructCount")
-    public ResponseEntity<Integer> substructCount(@RequestBody List<Mol> mols, @RequestParam final Boolean uniquified) {
+    public ResponseEntity<Integer> substructCount(@RequestBody List<Mol> mols, @RequestParam(required = false) final Boolean uniquified) {
         return ResponseEntity.ok(molSubOpService.substructCount(mols, uniquified));
     }
 
