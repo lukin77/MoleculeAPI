@@ -1,7 +1,9 @@
 package hr.uniri.molapi.service.fingerprint.io;
 
+import org.postgresql.util.PGobject;
+
 public interface FpInputOutputService {
     String bfpToBinaryText(String bfp);
 
-    String bfpFromBinaryText(String bytea);
+    PGobject bfpFromBinaryText(byte[] bytea);
 }

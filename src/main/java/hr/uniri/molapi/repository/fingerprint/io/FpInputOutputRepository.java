@@ -1,7 +1,9 @@
 package hr.uniri.molapi.repository.fingerprint.io;
 
-public interface FpInputOutputRepository {
-    String bfpToBinaryText(String bfp);
+import org.postgresql.util.PGobject;
 
-    String bfpFromBinaryText(String bytea);
+public interface FpInputOutputRepository {
+    byte[] bfpToBinaryText(String bfp);
+
+    PGobject bfpFromBinaryText(byte[] bytea);
 }

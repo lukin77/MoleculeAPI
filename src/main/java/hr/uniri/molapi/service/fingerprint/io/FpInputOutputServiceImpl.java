@@ -1,8 +1,11 @@
 package hr.uniri.molapi.service.fingerprint.io;
 
 import hr.uniri.molapi.repository.fingerprint.io.FpInputOutputRepository;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Base64;
 
 @Service
 public class FpInputOutputServiceImpl implements FpInputOutputService {
@@ -16,11 +19,12 @@ public class FpInputOutputServiceImpl implements FpInputOutputService {
 
     @Override
     public String bfpToBinaryText(String bfp) {
-        return fpInputOutputRepository.bfpToBinaryText(bfp);
+        byte[] byteArray = fpInputOutputRepository.bfpToBinaryText(bfp);
+        return Base64.getEncoder().encodeToString(byteArray);
     }
 
     @Override
-    public String bfpFromBinaryText(String bytea) {
+    public PGobject bfpFromBinaryText(byte[] bytea) {
         return fpInputOutputRepository.bfpFromBinaryText(bytea);
     }
 }

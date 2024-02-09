@@ -1,6 +1,7 @@
 package hr.uniri.molapi.controller.fingerprint.io;
 
 import hr.uniri.molapi.service.fingerprint.io.FpInputOutputService;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class FpInputOutputController {
     }
 
     @PostMapping("/bfpFromBinaryText")
-    public ResponseEntity<String> bfpFromBinaryText(@RequestBody final String bytea) {
+    public ResponseEntity<PGobject> bfpFromBinaryText(@RequestBody final byte[] bytea) {
         return ResponseEntity.ok(fpInputOutputService.bfpFromBinaryText(bytea));
     }
 }
