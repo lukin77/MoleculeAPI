@@ -18,7 +18,11 @@ public interface FpGenerateRepository {
 
     PGobject torsionFp(Mol mol);
 
+    PGobject torsionbvFp(Mol mol);
+
     PGobject layeredFp(Mol mol);
 
     PGobject maccsFp(Mol mol);
+
+    PGobject atompairbvFp(Mol mol);
 }

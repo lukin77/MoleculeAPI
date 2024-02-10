@@ -50,9 +50,19 @@ public class FpGenerateController {
         return ResponseEntity.ok().body(fpGenerateService.atompairFp(mol));
     }
 
+    @PostMapping("/atompairbv_fp")
+    public ResponseEntity<PGobject> atompairbvFp(@RequestBody final Mol mol) {
+        return ResponseEntity.ok().body(fpGenerateService.atompairbvFp(mol));
+    }
+
     @PostMapping("/torsion_fp")
     public ResponseEntity<PGobject> torsionFp(@RequestBody final Mol mol) {
         return ResponseEntity.ok().body(fpGenerateService.torsionFp(mol));
+    }
+
+    @PostMapping("/torsionbv_fp")
+    public ResponseEntity<PGobject> torsionbvFp(@RequestBody final Mol mol) {
+        return ResponseEntity.ok().body(fpGenerateService.torsionbvFp(mol));
     }
 
     @PostMapping("/layered_fp")

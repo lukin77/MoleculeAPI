@@ -52,8 +52,20 @@ public class FpGenerateRepositoryImpl implements FpGenerateRepository {
     }
 
     @Override
+    public PGobject atompairbvFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("atompairbv_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
+    }
+
+    @Override
     public PGobject torsionFp(Mol mol) {
         return simpleJdbcCall.withFunctionName("torsion_fp")
+                .executeFunction(PGobject.class, mol.getSmiles());
+    }
+
+    @Override
+    public PGobject torsionbvFp(Mol mol) {
+        return simpleJdbcCall.withFunctionName("torsionbv_fp")
                 .executeFunction(PGobject.class, mol.getSmiles());
     }
 

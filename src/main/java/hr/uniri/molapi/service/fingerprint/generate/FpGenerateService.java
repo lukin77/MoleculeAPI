@@ -22,4 +22,8 @@ public interface FpGenerateService {
     PGobject layeredFp(Mol mol);
 
     PGobject maccsFp(Mol mol);
+
+    PGobject atompairbvFp(Mol mol);
+
+    PGobject torsionbvFp(Mol mol);
 }

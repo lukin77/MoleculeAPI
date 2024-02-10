@@ -50,8 +50,18 @@ public class FpGenerateServiceImpl implements FpGenerateService {
     }
 
     @Override
+    public PGobject atompairbvFp(Mol mol) {
+        return executeGenerateFunction(mol, fpGenerateRepository::atompairbvFp);
+    }
+
+    @Override
     public PGobject torsionFp(Mol mol) {
         return executeGenerateFunction(mol, fpGenerateRepository::torsionFp);
+    }
+
+    @Override
+    public PGobject torsionbvFp(Mol mol) {
+        return executeGenerateFunction(mol, fpGenerateRepository::torsionbvFp);
     }
 
     @Override
