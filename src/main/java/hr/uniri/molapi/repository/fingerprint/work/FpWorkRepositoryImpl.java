@@ -14,7 +14,7 @@ public class FpWorkRepositoryImpl implements FpWorkRepository {
 
     public FpWorkRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("emolecules");
     }
 
     // Note that there are two types of fingerprints types: sfp and bfp
