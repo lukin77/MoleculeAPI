@@ -1,20 +1,19 @@
 package hr.uniri.molapi.repository.molecule.subop;
 
 import hr.uniri.molapi.model.Mol;
+import hr.uniri.molapi.utils.SimpleJdbcCallFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MolSubOpRepositoryImpl implements MolSubOpRepository {
 
-    private final SimpleJdbcCall simpleJdbcCall;
-
+    private final SimpleJdbcCallFactory simpleJdbcCallFactory;
     private final JdbcTemplate jdbcTemplate;
 
-    public MolSubOpRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public MolSubOpRepositoryImpl(SimpleJdbcCallFactory simpleJdbcCallFactory, JdbcTemplate jdbcTemplate) {
+        this.simpleJdbcCallFactory = simpleJdbcCallFactory;
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override

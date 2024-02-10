@@ -1,30 +1,31 @@
 package hr.uniri.molapi.repository.fingerprint.io;
 
+import hr.uniri.molapi.utils.SimpleJdbcCallFactory;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class FpInputOutputRepositoryImpl implements FpInputOutputRepository {
 
-    private SimpleJdbcCall simpleJdbcCall;
+    private final SimpleJdbcCallFactory simpleJdbcCallFactory;
 
     @Autowired
-    public FpInputOutputRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("emolecules");
+    public FpInputOutputRepositoryImpl(SimpleJdbcCallFactory simpleJdbcCallFactory) {
+        this.simpleJdbcCallFactory = simpleJdbcCallFactory;
     }
 
     @Override
     public byte[] bfpToBinaryText(String bfp) {
-        return simpleJdbcCall.withFunctionName("bfp_to_binary_text")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("bfp_to_binary_text")
                 .executeFunction(byte[].class, bfp);
     }
 
     @Override
     public PGobject bfpFromBinaryText(byte[] bytea) {
-        return simpleJdbcCall.withFunctionName("bfp_from_binary_text")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("bfp_from_binary_text")
                 .executeFunction(PGobject.class, bytea);
     }
 }

@@ -1,20 +1,20 @@
 package hr.uniri.molapi.repository.fingerprint.work;
 
+import hr.uniri.molapi.utils.SimpleJdbcCallFactory;
 import org.postgresql.util.PGobject;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class FpWorkRepositoryImpl implements FpWorkRepository {
 
-    private SimpleJdbcCall simpleJdbcCall;
+    private final SimpleJdbcCallFactory simpleJdbcCallFactory;
 
     private final JdbcTemplate jdbcTemplate;
 
-    public FpWorkRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public FpWorkRepositoryImpl(SimpleJdbcCallFactory simpleJdbcCallFactory, JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("emolecules");
+        this.simpleJdbcCallFactory = simpleJdbcCallFactory;
     }
 
     // Note that there are two types of fingerprints types: sfp and bfp
@@ -49,31 +49,36 @@ public class FpWorkRepositoryImpl implements FpWorkRepository {
 
     @Override
     public Integer size(String fp) {
-        return simpleJdbcCall.withFunctionName("size")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("size")
                 .executeFunction(Integer.class, fp);
     }
 
     @Override
     public PGobject add(String fp1, String fp2) {
-        return simpleJdbcCall.withFunctionName("add")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("add")
                 .executeFunction(PGobject.class, fp1, fp2);
     }
 
     @Override
     public PGobject subtract(String fp1, String fp2) {
-        return simpleJdbcCall.withFunctionName("subtract")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("subtract")
                 .executeFunction(PGobject.class, fp1, fp2);
     }
 
     @Override
     public Boolean allValuesLt(String fp1, Integer lessThan) {
-        return simpleJdbcCall.withFunctionName("all_values_lt")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("all_values_lt")
                 .executeFunction(Boolean.class, fp1, lessThan);
     }
 
     @Override
     public Boolean allValuesGt(String fp1, Integer greaterThan) {
-        return simpleJdbcCall.withFunctionName("all_values_gt")
+        return simpleJdbcCallFactory
+                .getSimpleJdbcCall("all_values_gt")
                 .executeFunction(Boolean.class, fp1, greaterThan);
     }
 
