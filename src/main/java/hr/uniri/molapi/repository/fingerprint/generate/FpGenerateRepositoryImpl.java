@@ -12,7 +12,7 @@ public class FpGenerateRepositoryImpl implements FpGenerateRepository {
     private final SimpleJdbcCall simpleJdbcCall;
 
     public FpGenerateRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override

@@ -14,12 +14,12 @@ public class MolSubOpRepositoryImpl implements MolSubOpRepository {
 
     public MolSubOpRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override
     public Boolean substruct(Mol mol, Mol mol1) {
-        final String SQL = "SELECT public.substruct(public.mol_from_smiles(?::cstring), public.mol_from_smiles(?::cstring))";
+        final String SQL = "SELECT substruct(mol_from_smiles(?::cstring), mol_from_smiles(?::cstring))";
         return jdbcTemplate.query(SQL,
                 preparedStatement -> {
                     preparedStatement.setString(1, mol.getSmiles());
@@ -32,7 +32,7 @@ public class MolSubOpRepositoryImpl implements MolSubOpRepository {
 
     @Override
     public Integer substructCount(Mol mol, Mol mol1, Boolean uniquified) {
-        final String SQL = "SELECT public.substruct_count(public.mol_from_smiles(?::cstring), public.mol_from_smiles(?::cstring), ?)";
+        final String SQL = "SELECT substruct_count(mol_from_smiles(?::cstring), mol_from_smiles(?::cstring), ?)";
         return jdbcTemplate.query(SQL,
                 preparedStatement -> {
                     preparedStatement.setString(1, mol.getSmiles());

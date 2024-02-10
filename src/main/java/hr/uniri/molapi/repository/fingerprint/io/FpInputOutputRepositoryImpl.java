@@ -16,8 +16,7 @@ public class FpInputOutputRepositoryImpl implements FpInputOutputRepository {
     @Autowired
     public FpInputOutputRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-                .withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override

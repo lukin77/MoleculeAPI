@@ -11,8 +11,7 @@ public class MolIoRepositoryImpl implements MolIoRepository {
     private final SimpleJdbcCall simpleJdbcCall;
 
     public MolIoRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-                .withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override

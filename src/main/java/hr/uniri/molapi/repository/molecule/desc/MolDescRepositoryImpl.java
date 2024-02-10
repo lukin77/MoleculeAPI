@@ -16,7 +16,7 @@ public class MolDescRepositoryImpl implements MolDescRepository {
     @Autowired
     public MolDescRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override

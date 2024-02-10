@@ -20,7 +20,6 @@ public class GeneralMolRepositoryImpl implements GeneralMolRepository {
     private final SimpleJdbcInsert simpleJdbcInsert;
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcCall simpleJdbcCall;
-
     private static final String MOLS_TABLE = "mols";
     private static final String MOL_TYPE = "::mol";
 
@@ -28,7 +27,7 @@ public class GeneralMolRepositoryImpl implements GeneralMolRepository {
     public GeneralMolRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName(MOLS_TABLE).usingGeneratedKeyColumns("id");
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate).withSchemaName("emolecules");
     }
 
     @Override
@@ -53,7 +52,8 @@ public class GeneralMolRepositoryImpl implements GeneralMolRepository {
 
     @Override
     public String rdkitVersion() {
-        return simpleJdbcCall.withFunctionName(RDKIT_VERSION_FUNCTION).executeFunction(String.class);
+        return simpleJdbcCall.withFunctionName(RDKIT_VERSION_FUNCTION)
+                .executeFunction(String.class);
     }
 
     @Override

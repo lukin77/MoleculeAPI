@@ -14,15 +14,14 @@ public class FpWorkRepositoryImpl implements FpWorkRepository {
 
     public FpWorkRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-                .withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     // Note that there are two types of fingerprints types: sfp and bfp
     // ToDo - add support for bfp
     @Override
     public Double tanimotoSml(String fp1, String fp2) {
-        final String SQL = "SELECT public.tanimoto_sml(?::public.sfp, ?::public.sfp)";
+        final String SQL = "SELECT tanimoto_sml(?::sfp, ?::sfp)";
         return jdbcTemplate.query(SQL,
                 preparedStatement -> {
                     preparedStatement.setString(1, fp1);
@@ -37,7 +36,7 @@ public class FpWorkRepositoryImpl implements FpWorkRepository {
     // ToDo - add support for bfp
     @Override
     public Double diceSml(String fp1, String fp2) {
-        final String SQL = "SELECT public.dice_sml(?::public.sfp, ?::public.sfp)";
+        final String SQL = "SELECT dice_sml(?::sfp, ?::sfp)";
         return jdbcTemplate.query(SQL,
                 preparedStatement -> {
                     preparedStatement.setString(1, fp1);

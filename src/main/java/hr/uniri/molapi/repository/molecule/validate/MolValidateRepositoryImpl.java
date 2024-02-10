@@ -15,8 +15,7 @@ public class MolValidateRepositoryImpl implements MolValidateRepository {
 
     @Autowired
     public MolValidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
-        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate)
-                .withSchemaName("public");
+        this.simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate);
     }
 
     @Override
