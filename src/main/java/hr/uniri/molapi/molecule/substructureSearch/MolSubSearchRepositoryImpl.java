@@ -38,7 +38,7 @@ public class MolSubSearchRepositoryImpl implements MolSubSearchRepository {
 
     @Override
     public Boolean compareIfTwoMolsAreEqual(String smiles1, String smiles2) {
-        final String sql = "SELECT mol_from_smiles(?)@=mol_from_smiles(?)";
+        final String sql = "SELECT ?@=?";
         return jdbcTemplate.queryForObject(sql, Boolean.class, smiles1, smiles2);
     }
 }
