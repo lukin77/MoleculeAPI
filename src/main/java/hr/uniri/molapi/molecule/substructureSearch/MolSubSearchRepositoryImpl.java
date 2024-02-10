@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static hr.uniri.molapi.utils.Const.MOLS_TABLE;
+
 @Repository
 public class MolSubSearchRepositoryImpl implements MolSubSearchRepository {
 
@@ -20,7 +22,7 @@ public class MolSubSearchRepositoryImpl implements MolSubSearchRepository {
 
     @Override
     public List<Mol> retrieveSubstructures(Mol mol) {
-        final String sql = "SELECT * FROM mols WHERE ?@>m";
+        final String sql = "SELECT * FROM " + MOLS_TABLE + " WHERE ?@>m";
         return jdbcTemplate.query(sql,
                 preparedStatement -> preparedStatement.setString(1, mol.getSmiles()),
                 new MolRowMapper());
@@ -28,7 +30,7 @@ public class MolSubSearchRepositoryImpl implements MolSubSearchRepository {
 
     @Override
     public List<Mol> retrieveAllMolsWhichContainGivenSubstructure(Mol mol) {
-        final String sql = "SELECT * FROM mols WHERE ?<@m";
+        final String sql = "SELECT * FROM " + MOLS_TABLE + " WHERE ?<@m";
         return jdbcTemplate.query(sql,
                 preparedStatement -> preparedStatement.setString(1, mol.getSmiles()),
                 new MolRowMapper());
@@ -36,7 +38,7 @@ public class MolSubSearchRepositoryImpl implements MolSubSearchRepository {
 
     @Override
     public Boolean compareIfTwoMolsAreEqual(String smiles1, String smiles2) {
-        final String sql = "SELECT mol_from_smiles(?)@=mol_from_smiles(?) from mols limit 1";
+        final String sql = "SELECT mol_from_smiles(?)@=mol_from_smiles(?)";
         return jdbcTemplate.queryForObject(sql, Boolean.class, smiles1, smiles2);
     }
 }

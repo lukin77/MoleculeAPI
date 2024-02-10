@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static hr.uniri.molapi.utils.Const.DEFAULT_RADIUS;
+
 @RestController
 @RequestMapping("fp/generate")
 public class FpGenerateController {
 
     private final FpGenerateService fpGenerateService;
-
-    private static final String DEFAULT_RADIUS = "2";
 
     @Autowired
     public FpGenerateController(FpGenerateService fpGenerateService) {

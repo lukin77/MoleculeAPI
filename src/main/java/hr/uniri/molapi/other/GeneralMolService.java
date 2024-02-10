@@ -15,8 +15,6 @@ public interface GeneralMolService {
 
     Optional<Mol> save(Mol Mol);
 
-    Optional<List<Mol>> substructureSearch(Mol Mol);
-
     String rdkitVersion();
 
     String rdkitToolkitVersion();

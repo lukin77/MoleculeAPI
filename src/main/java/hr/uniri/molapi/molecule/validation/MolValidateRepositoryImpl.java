@@ -6,10 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MolValidateRepositoryImpl implements MolValidateRepository {
-    private static final String IS_VALID_SMILES = "is_valid_smiles";
-    private static final String IS_VALID_CTAB = "is_valid_ctab";
-    private static final String IS_VALID_SMARTS = "is_valid_smarts";
-    private static final String IS_VALID_MOL_PKL = "is_valid_mol_pkl";
+
     private final SimpleJdbcCallFactory simpleJdbcCallFactory;
 
     @Autowired
@@ -20,28 +17,28 @@ public class MolValidateRepositoryImpl implements MolValidateRepository {
     @Override
     public Boolean isValidSmiles(String smiles) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall(IS_VALID_SMILES)
+                .getSimpleJdbcCall("is_valid_smiles")
                 .executeFunction(Boolean.class, smiles);
     }
 
     @Override
     public Boolean isValidCtab(String ctab) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall(IS_VALID_CTAB)
+                .getSimpleJdbcCall("is_valid_ctab")
                 .executeFunction(Boolean.class, ctab);
     }
 
     @Override
     public Boolean isValidSmarts(String smarts) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall(IS_VALID_SMARTS)
+                .getSimpleJdbcCall("is_valid_smarts")
                 .executeFunction(Boolean.class, smarts);
     }
 
     @Override
     public Boolean isValidMolPk(String molPk) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall(IS_VALID_MOL_PKL)
+                .getSimpleJdbcCall("is_valid_mol_pkl")
                 .executeFunction(Boolean.class, molPk);
     }
 }

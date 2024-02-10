@@ -4,8 +4,7 @@ import hr.uniri.molapi.model.Mol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import static hr.uniri.molapi.utils.ExecuteMethod.execute;
 
 @Service
 public class MolIoServiceImpl implements MolIoService {
@@ -19,93 +18,82 @@ public class MolIoServiceImpl implements MolIoService {
 
     @Override
     public Mol molFromSmiles(String smiles) {
-        return executeInputOutputFunction(smiles, molIoRepository::molFromSmiles);
+        return execute(smiles, molIoRepository::molFromSmiles);
     }
 
     @Override
     public Mol molFromSmarts(String smarts) {
-        return executeInputOutputFunction(smarts, molIoRepository::molFromSmarts);
+        return execute(smarts, molIoRepository::molFromSmarts);
     }
 
     @Override
     public Mol molFromCtab(String ctab, Boolean bool) {
-        return executeInputOutputFunction(ctab, bool, molIoRepository::molFromCtab);
+        return execute(ctab, bool, molIoRepository::molFromCtab);
     }
 
     @Override
     public Mol molFromPkl(String pkl) {
-        return executeInputOutputFunction(pkl, molIoRepository::molFromPkl);
+        return execute(pkl, molIoRepository::molFromPkl);
     }
 
     @Override
     public Mol qmolFromSmiles(String smiles) {
-        return executeInputOutputFunction(smiles, molIoRepository::qmolFromSmiles);
+        return execute(smiles, molIoRepository::qmolFromSmiles);
     }
 
     @Override
     public Mol qmolFromCtab(String ctab, Boolean bool) {
-        return executeInputOutputFunction(ctab, bool, molIoRepository::qmolFromCtab);
+        return execute(ctab, bool, molIoRepository::qmolFromCtab);
     }
 
     @Override
     public String molToSmiles(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToSmiles);
+        return execute(mol, molIoRepository::molToSmiles);
     }
 
     @Override
     public String molToCxsmiles(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToCxsmiles);
+        return execute(mol, molIoRepository::molToCxsmiles);
     }
 
     @Override
     public String molToSmarts(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToSmarts);
+        return execute(mol, molIoRepository::molToSmarts);
     }
 
     @Override
     public String molToCxsmarts(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToCxsmarts);
+        return execute(mol, molIoRepository::molToCxsmarts);
     }
 
     @Override
     public String molToPkl(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToPkl);
+        return execute(mol, molIoRepository::molToPkl);
     }
 
     @Override
     public String molToCtab(Mol mol, Boolean bool, Boolean bool2) {
-        return executeInputOutputFunction(mol, molIoRepository::molToCtab);
+        return execute(mol, molIoRepository::molToCtab);
     }
 
     @Override
     public String molToV3kctab(Mol mol, Boolean bool) {
-        return executeInputOutputFunction(mol, molIoRepository::molToV3kctab);
+        return execute(mol, molIoRepository::molToV3kctab);
     }
 
     @Override
     public String molToSvg(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToSvg);
+        return execute(mol, molIoRepository::molToSvg);
     }
 
     @Override
     public String molToJson(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molToJson);
+        return execute(mol, molIoRepository::molToJson);
     }
 
     @Override
     public String molFromJson(Mol mol) {
-        return executeInputOutputFunction(mol, molIoRepository::molFromJson);
+        return execute(mol, molIoRepository::molFromJson);
     }
 
-    private Mol executeInputOutputFunction(String param, Function<String, Mol> function) {
-        return function.apply(param);
-    }
-
-    private Mol executeInputOutputFunction(String param, Boolean bool, BiFunction<String, Boolean, Mol> function) {
-        return function.apply(param, bool);
-    }
-
-    private String executeInputOutputFunction(Mol param, Function<Mol, String> function) {
-        return function.apply(param);
-    }
 }

@@ -4,7 +4,7 @@ import hr.uniri.molapi.model.Mol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.function.Function;
+import static hr.uniri.molapi.utils.ExecuteMethod.execute;
 
 @Service
 public class MolDescServiceImpl implements MolDescService {
@@ -18,132 +18,132 @@ public class MolDescServiceImpl implements MolDescService {
 
     @Override
     public Float molAmw(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molAmw);
+        return execute(mol, molDescRepository::molAmw);
     }
 
     @Override
     public Float molExactMw(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molExactMw);
+        return execute(mol, molDescRepository::molExactMw);
     }
 
     @Override
     public Float molLogP(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molLogP);
+        return execute(mol, molDescRepository::molLogP);
     }
 
     @Override
     public Float molTpsa(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molTpsa);
+        return execute(mol, molDescRepository::molTpsa);
     }
 
     @Override
     public Float molLabuteAsa(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molLabuteAsa);
+        return execute(mol, molDescRepository::molLabuteAsa);
     }
 
     @Override
     public Float molFractionCsp3(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molFractionCsp3);
+        return execute(mol, molDescRepository::molFractionCsp3);
     }
 
     @Override
     public Integer molHba(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molHba);
+        return execute(mol, molDescRepository::molHba);
     }
 
     @Override
     public Integer molHbd(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molHbd);
+        return execute(mol, molDescRepository::molHbd);
     }
 
     @Override
     public Integer molNumAtoms(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAtoms);
+        return execute(mol, molDescRepository::molNumAtoms);
     }
 
     @Override
     public Integer molNumHeavyAtoms(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumHeavyAtoms);
+        return execute(mol, molDescRepository::molNumHeavyAtoms);
     }
 
     @Override
     public Integer molNumRotatableBonds(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumRotatableBonds);
+        return execute(mol, molDescRepository::molNumRotatableBonds);
     }
 
     @Override
     public Integer molNumHeteroatoms(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumHeteroatoms);
+        return execute(mol, molDescRepository::molNumHeteroatoms);
     }
 
     @Override
     public Integer molNumRings(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumRings);
+        return execute(mol, molDescRepository::molNumRings);
     }
 
     @Override
     public Integer molNumAromaticRings(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAromaticRings);
+        return execute(mol, molDescRepository::molNumAromaticRings);
     }
 
     @Override
     public Integer molNumAliphaticRings(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAliphaticRings);
+        return execute(mol, molDescRepository::molNumAliphaticRings);
     }
 
     @Override
     public Integer molNumSaturatedRings(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumSaturatedRings);
+        return execute(mol, molDescRepository::molNumSaturatedRings);
     }
 
     @Override
     public Integer molNumAromaticHeterocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAromaticHeterocycles);
+        return execute(mol, molDescRepository::molNumAromaticHeterocycles);
     }
 
     @Override
     public Integer molNumAliphaticHeterocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAliphaticHeterocycles);
+        return execute(mol, molDescRepository::molNumAliphaticHeterocycles);
     }
 
     @Override
     public Integer molNumSaturatedHeterocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumSaturatedHeterocycles);
+        return execute(mol, molDescRepository::molNumSaturatedHeterocycles);
     }
 
     @Override
     public Integer molNumAromaticCarbocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAromaticCarbocycles);
+        return execute(mol, molDescRepository::molNumAromaticCarbocycles);
     }
 
     @Override
     public Integer molNumAliphaticCarbocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumAliphaticCarbocycles);
+        return execute(mol, molDescRepository::molNumAliphaticCarbocycles);
     }
 
     @Override
     public Integer molNumSaturatedCarbocycles(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumSaturatedCarbocycles);
+        return execute(mol, molDescRepository::molNumSaturatedCarbocycles);
     }
 
     @Override
     public Integer molNumSpiroAtoms(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumSpiroAtoms);
+        return execute(mol, molDescRepository::molNumSpiroAtoms);
     }
 
     @Override
     public Integer molNumBridgeheadAtoms(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molNumBridgeheadAtoms);
+        return execute(mol, molDescRepository::molNumBridgeheadAtoms);
     }
 
     @Override
     public Integer molInchi(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molInchi);
+        return execute(mol, molDescRepository::molInchi);
     }
 
     @Override
     public Integer molInchikey(Mol mol) {
-        return executeDescFunction(mol, molDescRepository::molInchikey);
+        return execute(mol, molDescRepository::molInchikey);
     }
 
     @Override
@@ -156,9 +156,5 @@ public class MolDescServiceImpl implements MolDescService {
     public String molNmHash(Mol mol, String hashType) {
         // TODO: implement
         return null;
-    }
-
-    private <T> T executeDescFunction(Mol mol, Function<Mol, T> function) {
-        return function.apply(mol);
     }
 }

@@ -5,8 +5,7 @@ import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import static hr.uniri.molapi.utils.ExecuteMethod.execute;
 
 @Service
 public class FpGenerateServiceImpl implements FpGenerateService {
@@ -20,64 +19,56 @@ public class FpGenerateServiceImpl implements FpGenerateService {
 
     @Override
     public PGobject morganFp(Mol mol, String radius) {
-        return executeGenerateFunction(mol, radius, fpGenerateRepository::morganFp);
+        return execute(mol, radius, fpGenerateRepository::morganFp);
     }
 
     @Override
     public PGobject morganbvFp(Mol mol, String radius) {
-        return executeGenerateFunction(mol, radius, fpGenerateRepository::morganbvFp);
+        return execute(mol, radius, fpGenerateRepository::morganbvFp);
     }
 
     @Override
     public PGobject featmorganFp(Mol mol, String radius) {
-        return executeGenerateFunction(mol, radius, fpGenerateRepository::featmorganFp);
+        return execute(mol, radius, fpGenerateRepository::featmorganFp);
     }
 
     @Override
     public PGobject featmorganbvFp(Mol mol, String radius) {
-        return executeGenerateFunction(mol, radius, fpGenerateRepository::featmorganbvFp);
+        return execute(mol, radius, fpGenerateRepository::featmorganbvFp);
     }
 
     @Override
     public PGobject rdkitFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::rdkitFp);
+        return execute(mol, fpGenerateRepository::rdkitFp);
     }
 
     @Override
     public PGobject atompairFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::atompairFp);
+        return execute(mol, fpGenerateRepository::atompairFp);
     }
 
     @Override
     public PGobject atompairbvFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::atompairbvFp);
+        return execute(mol, fpGenerateRepository::atompairbvFp);
     }
 
     @Override
     public PGobject torsionFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::torsionFp);
+        return execute(mol, fpGenerateRepository::torsionFp);
     }
 
     @Override
     public PGobject torsionbvFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::torsionbvFp);
+        return execute(mol, fpGenerateRepository::torsionbvFp);
     }
 
     @Override
     public PGobject layeredFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::layeredFp);
+        return execute(mol, fpGenerateRepository::layeredFp);
     }
 
     @Override
     public PGobject maccsFp(Mol mol) {
-        return executeGenerateFunction(mol, fpGenerateRepository::maccsFp);
-    }
-
-    private <T> T executeGenerateFunction(Mol mol, Function<Mol, T> function) {
-        return function.apply(mol);
-    }
-
-    private PGobject executeGenerateFunction(Mol mol, String radius, BiFunction<Mol, String, PGobject> function) {
-        return function.apply(mol, radius);
+        return execute(mol, fpGenerateRepository::maccsFp);
     }
 }

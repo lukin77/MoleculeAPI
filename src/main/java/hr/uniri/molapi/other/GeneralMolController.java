@@ -54,11 +54,4 @@ public class GeneralMolController {
         );
     }
 
-    /*
-    @PostMapping("/search")
-    public ResponseEntity<List<Mol>> substructureSearchMol(@RequestBody final Mol mol) {
-        return executeSubstrutureSearch(mol, molService::substructureSearch);
-    }
-     */
-
 }
