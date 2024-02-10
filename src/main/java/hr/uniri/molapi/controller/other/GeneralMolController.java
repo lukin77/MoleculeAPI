@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("other")
+@RequestMapping("crud")
 public class GeneralMolController {
 
     private final GeneralMolService generalMolService;
@@ -53,16 +53,6 @@ public class GeneralMolController {
                 () -> ResponseEntity.status(HttpStatus.CONFLICT)
                         .build()
         );
-    }
-
-    @GetMapping("/rdkitVersion")
-    public @ResponseBody ResponseEntity<String> rdkitVersion() {
-        return ResponseEntity.ok().body(generalMolService.rdkitVersion());
-    }
-
-    @GetMapping("/rdkitToolkitVersion")
-    public @ResponseBody ResponseEntity<String> rdkitToolkitVersion() {
-        return ResponseEntity.ok().body(generalMolService.rdkitToolkitVersion());
     }
 
     /*
