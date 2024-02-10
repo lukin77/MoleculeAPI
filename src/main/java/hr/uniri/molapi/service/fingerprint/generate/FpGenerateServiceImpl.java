@@ -64,7 +64,7 @@ public class FpGenerateServiceImpl implements FpGenerateService {
         return executeGenerateFunction(mol, fpGenerateRepository::maccsFp);
     }
 
-    private PGobject executeGenerateFunction(Mol mol, Function<Mol, PGobject> function) {
+    private <T> T executeGenerateFunction(Mol mol, Function<Mol, T> function) {
         return function.apply(mol);
     }
 
