@@ -7,11 +7,9 @@ public interface FpWorkRepository {
 
     Double diceSml(String fp1, String fp2);
 
+    PGobject operation(String fp1, String fp2, String methodName);
+
     Integer size(String fp);
-
-    PGobject add(String fp1, String fp2);
-
-    PGobject subtract(String fp1, String fp2);
 
     Boolean allValuesLt(String fp1, Integer lessThan);
 

@@ -1,5 +1,6 @@
 package hr.uniri.molapi.molecule.validation;
 
+import hr.uniri.molapi.model.enums.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +17,9 @@ public class MolValidateServiceImpl implements MolValidateService {
     }
 
     @Override
-    public Boolean isValidSmiles(String smiles) {
-        return execute(smiles, molValidateRepository::isValidSmiles);
+    public Boolean validate(MolValidateRequest molValidateRequest) {
+        Validation validationMethod = Validation.valueOf(molValidateRequest.getValidationMethod());
+        String molecule = molValidateRequest.getMolecule();
+        return execute(molecule, validationMethod.name(), molValidateRepository::validate);
     }
-
-    @Override
-    public Boolean isValidCtab(String ctab) {
-        return execute(ctab, molValidateRepository::isValidCtab);
-    }
-
-    @Override
-    public Boolean isValidSmarts(String smarts) {
-        return execute(smarts, molValidateRepository::isValidSmarts);
-
-    }
-
-    @Override
-    public Boolean isValidMolPk(String molPk) {
-        return execute(molPk, molValidateRepository::isValidMolPk);
-    }
-
 }

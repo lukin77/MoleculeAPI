@@ -15,30 +15,10 @@ public class MolValidateRepositoryImpl implements MolValidateRepository {
     }
 
     @Override
-    public Boolean isValidSmiles(String smiles) {
+    public Boolean validate(String molecule, String methodName) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall("is_valid_smiles")
-                .executeFunction(Boolean.class, smiles);
+                .getSimpleJdbcCall(methodName)
+                .executeFunction(Boolean.class, molecule, methodName);
     }
 
-    @Override
-    public Boolean isValidCtab(String ctab) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("is_valid_ctab")
-                .executeFunction(Boolean.class, ctab);
-    }
-
-    @Override
-    public Boolean isValidSmarts(String smarts) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("is_valid_smarts")
-                .executeFunction(Boolean.class, smarts);
-    }
-
-    @Override
-    public Boolean isValidMolPk(String molPk) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("is_valid_mol_pkl")
-                .executeFunction(Boolean.class, molPk);
-    }
 }

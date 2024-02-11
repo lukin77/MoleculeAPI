@@ -15,43 +15,47 @@ public interface MolDescRepository {
 
     Float molFractionCsp3(Mol mol);
 
-    Integer molHba(Mol mol);
+    Float molHba(Mol mol);
 
-    Integer molHbd(Mol mol);
+    Float molHbd(Mol mol);
 
-    Integer molNumAtoms(Mol mol);
+    Float molNumAtoms(Mol mol);
 
-    Integer molNumHeavyAtoms(Mol mol);
+    Float molNumHeavyAtoms(Mol mol);
 
-    Integer molNumRotatableBonds(Mol mol);
+    Float molNumRotatableBonds(Mol mol);
 
-    Integer molNumHeteroatoms(Mol mol);
+    Float molNumHeteroatoms(Mol mol);
 
-    Integer molNumRings(Mol mol);
+    Float molNumRings(Mol mol);
 
-    Integer molNumAromaticRings(Mol mol);
+    Float molNumAromaticRings(Mol mol);
 
-    Integer molNumAliphaticRings(Mol mol);
+    Float molNumAliphaticRings(Mol mol);
 
-    Integer molNumSaturatedRings(Mol mol);
+    Float molNumSaturatedRings(Mol mol);
 
-    Integer molNumAromaticHeterocycles(Mol mol);
+    Float molNumAromaticHeterocycles(Mol mol);
 
-    Integer molNumAliphaticHeterocycles(Mol mol);
+    Float molNumAliphaticHeterocycles(Mol mol);
 
-    Integer molNumSaturatedHeterocycles(Mol mol);
+    Float molNumSaturatedHeterocycles(Mol mol);
 
-    Integer molNumAromaticCarbocycles(Mol mol);
+    Float molNumAromaticCarbocycles(Mol mol);
 
-    Integer molNumAliphaticCarbocycles(Mol mol);
+    Float molNumAliphaticCarbocycles(Mol mol);
 
-    Integer molNumSaturatedCarbocycles(Mol mol);
+    Float molNumSaturatedCarbocycles(Mol mol);
 
-    Integer molNumSpiroAtoms(Mol mol);
+    Float molNumSpiroAtoms(Mol mol);
 
-    Integer molNumBridgeheadAtoms(Mol mol);
+    Float molNumBridgeheadAtoms(Mol mol);
 
-    Integer molInchi(Mol mol);
+    Float molInchi(Mol mol);
 
-    Integer molInchikey(Mol mol);
+    Float molInchikey(Mol mol);
+
+    Float molFormula(Mol mol);
+
+    Float molNmHash(Mol mol);
 }

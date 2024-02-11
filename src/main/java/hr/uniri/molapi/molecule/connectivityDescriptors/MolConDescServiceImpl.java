@@ -1,5 +1,6 @@
 package hr.uniri.molapi.molecule.connectivityDescriptors;
 
+import hr.uniri.molapi.model.enums.ConnectivityDescriptor;
 import hr.uniri.molapi.model.Mol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,48 +18,25 @@ public class MolConDescServiceImpl implements MolConDescService {
     }
 
     @Override
-    public Float molChiXv(Mol mol, int x) {
-        return switch (x) {
-            case 0 -> execute(mol, molConDescRepository::molChi0v);
-            case 1 -> execute(mol, molConDescRepository::molChi1v);
-            case 2 -> execute(mol, molConDescRepository::molChi2v);
-            case 3 -> execute(mol, molConDescRepository::molChi3v);
-            case 4 -> execute(mol, molConDescRepository::molChi4v);
-            default -> throw new IllegalStateException("Unexpected value: " + x);
-        };
+    public Float connectivityDescription(MolConDescRequest molConDescRequest) {
+        ConnectivityDescriptor connectivityDescriptor = ConnectivityDescriptor.valueOf(molConDescRequest.getConnectivityDescriptor());
+        Mol mol = new Mol(molConDescRequest.getSmiles());
 
-    }
-
-    @Override
-    public Float MolChiXn(Mol mol, int x) {
-        return switch (x) {
-            case 0 -> execute(mol, molConDescRepository::molChi0n);
-            case 1 -> execute(mol, molConDescRepository::molChi1n);
-            case 2 -> execute(mol, molConDescRepository::molChi2n);
-            case 3 -> execute(mol, molConDescRepository::molChi3n);
-            case 4 -> execute(mol, molConDescRepository::molChi4n);
-            default -> throw new IllegalStateException("Unexpected value: " + x);
+        return switch (connectivityDescriptor) {
+            case mol_chi0v -> execute(mol, molConDescRepository::molChi0v);
+            case mol_chi1v -> execute(mol, molConDescRepository::molChi1v);
+            case mol_chi2v -> execute(mol, molConDescRepository::molChi2v);
+            case mol_chi3v -> execute(mol, molConDescRepository::molChi3v);
+            case mol_chi4v -> execute(mol, molConDescRepository::molChi4v);
+            case mol_chi0n -> execute(mol, molConDescRepository::molChi0n);
+            case mol_chi1n -> execute(mol, molConDescRepository::molChi1n);
+            case mol_chi2n -> execute(mol, molConDescRepository::molChi2n);
+            case mol_chi3n -> execute(mol, molConDescRepository::molChi3n);
+            case mol_kappa1 -> execute(mol, molConDescRepository::molKappa1);
+            case mol_kappa2 -> execute(mol, molConDescRepository::molKappa2);
+            case mol_kappa3 -> execute(mol, molConDescRepository::molKappa3);
+            case mol_phi -> execute(mol, molConDescRepository::molPhi);
+            case mol_hallkieralpha -> execute(mol, molConDescRepository::molHallkieralpha);
         };
     }
-
-    @Override
-    public Float molKappaX(Mol mol, int x) {
-        return switch (x) {
-            case 1 -> execute(mol, molConDescRepository::molKappa1);
-            case 2 -> execute(mol, molConDescRepository::molKappa2);
-            case 3 -> execute(mol, molConDescRepository::molKappa3);
-            default -> throw new IllegalStateException("Unexpected value: " + x);
-        };
-    }
-
-    @Override
-    public Float molPhi(Mol mol) {
-        return execute(mol, molConDescRepository::molPhi);
-    }
-
-    @Override
-    public Float molHallkieralpha(Mol mol) {
-        return execute(mol, molConDescRepository::molHallkieralpha);
-    }
-
 }

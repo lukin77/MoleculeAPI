@@ -1,6 +1,6 @@
 package hr.uniri.molapi.fingerprint.generate;
 
-import hr.uniri.molapi.model.FingerprintMethod;
+import hr.uniri.molapi.model.enums.FingerprintMethod;
 import hr.uniri.molapi.model.Mol;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +26,10 @@ public class FpGenerateServiceImpl implements FpGenerateService {
         Integer radius = request.getRadius() != null ? request.getRadius() : DEFAULT_RADIUS;
 
         return switch (method) {
-            case morgan_fp -> execute(mol, radius, fpGenerateRepository::morganFp);
-            case morganbv_fp -> execute(mol, radius, fpGenerateRepository::morganbvFp);
-            case featmorgan_fp -> execute(mol, radius, fpGenerateRepository::featmorganFp);
-            case featmorganbv_fp -> execute(mol, radius, fpGenerateRepository::featmorganbvFp);
-            case rdkit_fp -> execute(mol, fpGenerateRepository::rdkitFp);
-            case atompair_fp -> execute(mol, fpGenerateRepository::atompairFp);
-            case atompairbv_fp -> execute(mol, fpGenerateRepository::atompairbvFp);
-            case torsion_fp -> execute(mol, fpGenerateRepository::torsionFp);
-            case torsionbv_fp -> execute(mol, fpGenerateRepository::torsionbvFp);
-            case layered_fp -> execute(mol, fpGenerateRepository::layeredFp);
-            case maccs_fp -> execute(mol, fpGenerateRepository::maccsFp);
+            case morgan_fp, morganbv_fp, featmorgan_fp, featmorganbv_fp ->
+                    execute(mol, radius, method.name(), fpGenerateRepository::generate);
+            case rdkit_fp, atompair_fp, atompairbv_fp, torsion_fp, torsionbv_fp, layered_fp, maccs_fp ->
+                    execute(mol, method.name(), fpGenerateRepository::generate);
         };
     }
 }

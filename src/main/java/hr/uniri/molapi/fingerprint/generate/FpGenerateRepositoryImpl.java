@@ -15,79 +15,17 @@ public class FpGenerateRepositoryImpl implements FpGenerateRepository {
     }
 
     @Override
-    public PGobject morganFp(Mol mol, Integer radius) {
+    public PGobject generate(Mol mol, Integer radius, String methodName) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall("morgan_fp")
+                .getSimpleJdbcCall(methodName)
                 .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public PGobject morganbvFp(Mol mol, Integer radius) {
+    public PGobject generate(Mol mol, String methodName) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall("morganbv_fp")
-                .executeFunction(PGobject.class, mol.getSmiles(), radius);
-    }
-
-    @Override
-    public PGobject featmorganFp(Mol mol, Integer radius) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("featmorgan_fp")
-                .executeFunction(PGobject.class, mol.getSmiles(), radius);
-    }
-
-    @Override
-    public PGobject featmorganbvFp(Mol mol, Integer radius) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("featmorganbv_fp")
-                .executeFunction(PGobject.class, mol.getSmiles(), radius);
-    }
-
-    @Override
-    public PGobject rdkitFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("rdkit_fp")
+                .getSimpleJdbcCall(methodName)
                 .executeFunction(PGobject.class, mol.getSmiles());
     }
 
-    @Override
-    public PGobject atompairFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("atompair_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
-
-    @Override
-    public PGobject atompairbvFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("atompairbv_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
-
-    @Override
-    public PGobject torsionFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("torsion_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
-
-    @Override
-    public PGobject torsionbvFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("torsionbv_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
-
-    @Override
-    public PGobject layeredFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("layered_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
-
-    @Override
-    public PGobject maccsFp(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("maccs_fp")
-                .executeFunction(PGobject.class, mol.getSmiles());
-    }
 }

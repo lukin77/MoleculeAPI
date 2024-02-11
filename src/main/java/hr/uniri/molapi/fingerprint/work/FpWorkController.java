@@ -1,13 +1,12 @@
 package hr.uniri.molapi.fingerprint.work;
 
-import hr.uniri.molapi.model.FingerprintsRequest;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("fp/work")
+@RequestMapping("fingerprint")
 public class FpWorkController {
     private final FpWorkService fpWorkService;
 
@@ -16,14 +15,9 @@ public class FpWorkController {
         this.fpWorkService = fpWorkService;
     }
 
-    @PostMapping("/tanimotoSml")
-    public ResponseEntity<Double> tanimotoSml(@RequestBody final FingerprintsRequest fingerprintsRequest) {
-        return ResponseEntity.ok().body(fpWorkService.tanimotoSml(fingerprintsRequest));
-    }
-
-    @PostMapping("/diceSml")
-    public ResponseEntity<Double> diceSml(@RequestBody final FingerprintsRequest fingerprintsRequest) {
-        return ResponseEntity.ok().body(fpWorkService.diceSml(fingerprintsRequest));
+    @PostMapping("/similarity")
+    public ResponseEntity<Double> similarity(@RequestBody final FpWorkRequest fpWorkRequest) {
+        return ResponseEntity.ok().body(fpWorkService.similarity(fpWorkRequest));
     }
 
     @PostMapping("/size")
@@ -31,14 +25,9 @@ public class FpWorkController {
         return ResponseEntity.ok().body(fpWorkService.size(fp));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<PGobject> add(@RequestBody final FingerprintsRequest fingerprintsRequest) {
-        return ResponseEntity.ok().body(fpWorkService.add(fingerprintsRequest));
-    }
-
-    @PostMapping("/subtract")
-    public ResponseEntity<PGobject> subtract(@RequestBody final FingerprintsRequest fingerprintsRequest) {
-        return ResponseEntity.ok().body(fpWorkService.subtract(fingerprintsRequest));
+    @PostMapping("/operation")
+    public ResponseEntity<PGobject> operation(@RequestBody final FpWorkRequest fpWorkRequest) {
+        return ResponseEntity.ok().body(fpWorkService.operation(fpWorkRequest));
     }
 
     @PostMapping("/allValuesLt")

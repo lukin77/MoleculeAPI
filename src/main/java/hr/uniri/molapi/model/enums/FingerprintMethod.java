@@ -1,4 +1,4 @@
-package hr.uniri.molapi.model;
+package hr.uniri.molapi.model.enums;
 
 public enum FingerprintMethod {
     morgan_fp,

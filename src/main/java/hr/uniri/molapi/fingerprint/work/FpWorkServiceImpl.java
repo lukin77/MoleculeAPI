@@ -1,6 +1,7 @@
 package hr.uniri.molapi.fingerprint.work;
 
-import hr.uniri.molapi.model.FingerprintsRequest;
+import hr.uniri.molapi.model.enums.Operation;
+import hr.uniri.molapi.model.enums.Similarities;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +19,15 @@ public class FpWorkServiceImpl implements FpWorkService {
     }
 
     @Override
-    public Double tanimotoSml(FingerprintsRequest fingerprintsRequest) {
-        return execute(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::tanimotoSml);
-    }
+    public Double similarity(FpWorkRequest fpWorkRequest) {
+        Similarities similarity = Similarities.valueOf(fpWorkRequest.getSimilarity());
+        String fingerprint1 = fpWorkRequest.getFp1();
+        String fingerprint2 = fpWorkRequest.getFp2();
 
-    @Override
-    public Double diceSml(FingerprintsRequest fingerprintsRequest) {
-        return execute(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::diceSml);
+        return switch (similarity) {
+            case tanimoto_sml -> execute(fingerprint1, fingerprint2, fpWorkRepository::tanimotoSml);
+            case dice_sml -> execute(fingerprint1, fingerprint2, fpWorkRepository::diceSml);
+        };
     }
 
     @Override
@@ -33,13 +36,11 @@ public class FpWorkServiceImpl implements FpWorkService {
     }
 
     @Override
-    public PGobject add(FingerprintsRequest fingerprintsRequest) {
-        return execute(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::add);
-    }
-
-    @Override
-    public PGobject subtract(FingerprintsRequest fingerprintsRequest) {
-        return execute(fingerprintsRequest.getFp1(), fingerprintsRequest.getFp2(), fpWorkRepository::subtract);
+    public PGobject operation(FpWorkRequest fpWorkRequest) {
+        Operation operation = Operation.valueOf(fpWorkRequest.getOperation());
+        String fingerprint1 = fpWorkRequest.getFp1();
+        String fingerprint2 = fpWorkRequest.getFp2();
+        return execute(fingerprint1, fingerprint2, operation.name(), fpWorkRepository::operation);
     }
 
     @Override

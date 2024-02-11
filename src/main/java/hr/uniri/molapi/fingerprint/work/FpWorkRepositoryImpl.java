@@ -55,16 +55,9 @@ public class FpWorkRepositoryImpl implements FpWorkRepository {
     }
 
     @Override
-    public PGobject add(String fp1, String fp2) {
+    public PGobject operation(String fp1, String fp2, String methodName) {
         return simpleJdbcCallFactory
-                .getSimpleJdbcCall("add")
-                .executeFunction(PGobject.class, fp1, fp2);
-    }
-
-    @Override
-    public PGobject subtract(String fp1, String fp2) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("subtract")
+                .getSimpleJdbcCall(methodName)
                 .executeFunction(PGobject.class, fp1, fp2);
     }
 

@@ -3,13 +3,6 @@ package hr.uniri.molapi.molecule.connectivityDescriptors;
 import hr.uniri.molapi.model.Mol;
 
 public interface MolConDescService {
-    Float molChiXv(Mol mol, int x);
+    Float connectivityDescription(MolConDescRequest molConDescRequest);
 
-    Float MolChiXn(Mol mol, int x);
-
-    Float molKappaX(Mol mol, int x);
-
-    Float molPhi(Mol mol);
-
-    Float molHallkieralpha(Mol mol);
 }
