@@ -1,10 +1,12 @@
 package hr.uniri.molapi.fingerprint.generate;
 
+import hr.uniri.molapi.model.FingerprintMethod;
 import hr.uniri.molapi.model.Mol;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static hr.uniri.molapi.utils.Const.DEFAULT_RADIUS;
 import static hr.uniri.molapi.utils.ExecuteMethod.execute;
 
 @Service
@@ -18,57 +20,23 @@ public class FpGenerateServiceImpl implements FpGenerateService {
     }
 
     @Override
-    public PGobject morganFp(Mol mol, String radius) {
-        return execute(mol, radius, fpGenerateRepository::morganFp);
-    }
+    public PGobject generate(FpGenerateRequest request) {
+        FingerprintMethod method = FingerprintMethod.valueOf(request.getMethod());
+        Mol mol = new Mol(request.getSmiles());
+        Integer radius = request.getRadius() != null ? request.getRadius() : DEFAULT_RADIUS;
 
-    @Override
-    public PGobject morganbvFp(Mol mol, String radius) {
-        return execute(mol, radius, fpGenerateRepository::morganbvFp);
-    }
-
-    @Override
-    public PGobject featmorganFp(Mol mol, String radius) {
-        return execute(mol, radius, fpGenerateRepository::featmorganFp);
-    }
-
-    @Override
-    public PGobject featmorganbvFp(Mol mol, String radius) {
-        return execute(mol, radius, fpGenerateRepository::featmorganbvFp);
-    }
-
-    @Override
-    public PGobject rdkitFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::rdkitFp);
-    }
-
-    @Override
-    public PGobject atompairFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::atompairFp);
-    }
-
-    @Override
-    public PGobject atompairbvFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::atompairbvFp);
-    }
-
-    @Override
-    public PGobject torsionFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::torsionFp);
-    }
-
-    @Override
-    public PGobject torsionbvFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::torsionbvFp);
-    }
-
-    @Override
-    public PGobject layeredFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::layeredFp);
-    }
-
-    @Override
-    public PGobject maccsFp(Mol mol) {
-        return execute(mol, fpGenerateRepository::maccsFp);
+        return switch (method) {
+            case morgan_fp -> execute(mol, radius, fpGenerateRepository::morganFp);
+            case morganbv_fp -> execute(mol, radius, fpGenerateRepository::morganbvFp);
+            case featmorgan_fp -> execute(mol, radius, fpGenerateRepository::featmorganFp);
+            case featmorganbv_fp -> execute(mol, radius, fpGenerateRepository::featmorganbvFp);
+            case rdkit_fp -> execute(mol, fpGenerateRepository::rdkitFp);
+            case atompair_fp -> execute(mol, fpGenerateRepository::atompairFp);
+            case atompairbv_fp -> execute(mol, fpGenerateRepository::atompairbvFp);
+            case torsion_fp -> execute(mol, fpGenerateRepository::torsionFp);
+            case torsionbv_fp -> execute(mol, fpGenerateRepository::torsionbvFp);
+            case layered_fp -> execute(mol, fpGenerateRepository::layeredFp);
+            case maccs_fp -> execute(mol, fpGenerateRepository::maccsFp);
+        };
     }
 }

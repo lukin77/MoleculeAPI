@@ -10,8 +10,13 @@ public class ExecuteMethod {
         return function.apply(mol);
     }
 
-    public static <T> T execute(Mol mol, String radius, BiFunction<Mol, String, T> function) {
-        return function.apply(mol, radius);
+    public static <T> T execute(Mol mol, String string, BiFunction<Mol, String, T> function) {
+        return function.apply(mol, string);
+    }
+
+
+    public static <T> T execute(Mol mol, Integer integer, BiFunction<Mol, Integer, T> function) {
+        return function.apply(mol, integer);
     }
 
     public static <T> T execute(String s, Function<String, T> function) {

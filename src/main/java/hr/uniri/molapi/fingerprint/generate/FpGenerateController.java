@@ -1,15 +1,15 @@
 package hr.uniri.molapi.fingerprint.generate;
 
-import hr.uniri.molapi.model.Mol;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import static hr.uniri.molapi.utils.Const.DEFAULT_RADIUS;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("fp/generate")
+@RequestMapping("fingerprint")
 public class FpGenerateController {
 
     private final FpGenerateService fpGenerateService;
@@ -18,6 +18,13 @@ public class FpGenerateController {
     public FpGenerateController(FpGenerateService fpGenerateService) {
         this.fpGenerateService = fpGenerateService;
     }
+
+    @PostMapping("/generate")
+    public ResponseEntity<PGobject> generate(@RequestBody final FpGenerateRequest request) {
+        return ResponseEntity.ok().body(fpGenerateService.generate(request));
+    }
+
+    /*
 
     @PostMapping("/morganFp")
     public ResponseEntity<PGobject> morganFp(@RequestBody final Mol mol, @RequestParam(defaultValue = DEFAULT_RADIUS, required = false) String radius) {
@@ -73,4 +80,5 @@ public class FpGenerateController {
     public ResponseEntity<PGobject> maccsFp(@RequestBody final Mol mol) {
         return ResponseEntity.ok().body(fpGenerateService.maccsFp(mol));
     }
+     */
 }

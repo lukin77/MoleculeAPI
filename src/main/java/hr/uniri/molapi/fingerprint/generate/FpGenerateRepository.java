@@ -4,13 +4,13 @@ import hr.uniri.molapi.model.Mol;
 import org.postgresql.util.PGobject;
 
 public interface FpGenerateRepository {
-    PGobject morganFp(Mol mol, String radius);
+    PGobject morganFp(Mol mol, Integer radius);
 
-    PGobject morganbvFp(Mol mol, String radius);
+    PGobject morganbvFp(Mol mol, Integer radius);
 
-    PGobject featmorganFp(Mol mol, String radius);
+    PGobject featmorganFp(Mol mol, Integer radius);
 
-    PGobject featmorganbvFp(Mol mol, String radius);
+    PGobject featmorganbvFp(Mol mol, Integer radius);
 
     PGobject rdkitFp(Mol mol);
 

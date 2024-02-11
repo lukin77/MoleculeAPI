@@ -15,28 +15,28 @@ public class FpGenerateRepositoryImpl implements FpGenerateRepository {
     }
 
     @Override
-    public PGobject morganFp(Mol mol, String radius) {
+    public PGobject morganFp(Mol mol, Integer radius) {
         return simpleJdbcCallFactory
                 .getSimpleJdbcCall("morgan_fp")
                 .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public PGobject morganbvFp(Mol mol, String radius) {
+    public PGobject morganbvFp(Mol mol, Integer radius) {
         return simpleJdbcCallFactory
                 .getSimpleJdbcCall("morganbv_fp")
                 .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public PGobject featmorganFp(Mol mol, String radius) {
+    public PGobject featmorganFp(Mol mol, Integer radius) {
         return simpleJdbcCallFactory
                 .getSimpleJdbcCall("featmorgan_fp")
                 .executeFunction(PGobject.class, mol.getSmiles(), radius);
     }
 
     @Override
-    public PGobject featmorganbvFp(Mol mol, String radius) {
+    public PGobject featmorganbvFp(Mol mol, Integer radius) {
         return simpleJdbcCallFactory
                 .getSimpleJdbcCall("featmorganbv_fp")
                 .executeFunction(PGobject.class, mol.getSmiles(), radius);
