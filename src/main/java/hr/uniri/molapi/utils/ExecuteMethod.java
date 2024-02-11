@@ -1,7 +1,6 @@
 package hr.uniri.molapi.utils;
 
 import hr.uniri.molapi.model.Mol;
-import org.postgresql.util.PGobject;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -27,11 +26,11 @@ public class ExecuteMethod {
         return function.apply(s1, s2);
     }
 
-    public static Boolean execute(String s, Integer integer, BiFunction<String, Integer, Boolean> function) {
+    public static <T> T execute(String s, Integer integer, BiFunction<String, Integer, T> function) {
         return function.apply(s, integer);
     }
 
-    public static Mol execute(String param, Boolean bool, BiFunction<String, Boolean, Mol> function) {
+    public static <T> T execute(String param, Boolean bool, BiFunction<String, Boolean, T> function) {
         return function.apply(param, bool);
     }
 
