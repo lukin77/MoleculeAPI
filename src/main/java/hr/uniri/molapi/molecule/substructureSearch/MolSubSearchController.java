@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("mol/")
+@RequestMapping("molecule")
 public class MolSubSearchController {
 
     private final MolSubSearchService molSubSearchService;

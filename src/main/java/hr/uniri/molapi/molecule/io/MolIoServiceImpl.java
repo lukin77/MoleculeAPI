@@ -1,8 +1,13 @@
 package hr.uniri.molapi.molecule.io;
 
-import hr.uniri.molapi.model.Mol;
+import com.google.gson.Gson;
+import hr.uniri.molapi.model.enums.MolFromFormat;
+import hr.uniri.molapi.model.enums.MolToFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
 
 import static hr.uniri.molapi.utils.ExecuteMethod.execute;
 
@@ -17,83 +22,48 @@ public class MolIoServiceImpl implements MolIoService {
     }
 
     @Override
-    public Mol molFromSmiles(String smiles) {
-        return execute(smiles, molIoRepository::molFromSmiles);
+    public String molFrom(MolInputOutputRequest molInputOutputRequest) {
+        try {
+            MolFromFormat molFromFormat = MolFromFormat.valueOf(molInputOutputRequest.getFormat());
+            Object molecule = molInputOutputRequest.getMolecule();
+
+            switch (molFromFormat) {
+                case ctab, smiles:
+                    return execute(molecule.toString(), molFromFormat.name(), molIoRepository::molFrom);
+                case json:
+                    Gson gson = new Gson();
+                    String molJson = gson.toJson(molecule);
+                    return execute(molJson, molFromFormat.name(), molIoRepository::molFrom);
+                case pkl:
+                    // Can't extract binary string (bytea) from database therefore I can't test this
+                    // ERROR: problem generating molecule from blob data
+                    return molIoRepository.molFrom(serializeObject(molecule), molFromFormat.name());
+            }
+        } catch (IllegalArgumentException e) {
+            return String.format("format: %s not supported", molInputOutputRequest.getFormat());
+        }
+        return String.format("format: %s not supported", molInputOutputRequest.getFormat());
+    }
+
+    public static byte[] serializeObject(Object obj) {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+            oos.writeObject(obj);
+            return bos.toByteArray();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public Mol molFromSmarts(String smarts) {
-        return execute(smarts, molIoRepository::molFromSmarts);
-    }
+    public String molTo(MolInputOutputRequest molInputOutputRequest) {
+        try {
+            MolToFormat molToFormat = MolToFormat.valueOf(molInputOutputRequest.getFormat());
+            Object molecule = molInputOutputRequest.getMolecule();
 
-    @Override
-    public Mol molFromCtab(String ctab, Boolean bool) {
-        return execute(ctab, bool, molIoRepository::molFromCtab);
+            return execute(molecule.toString(), molToFormat.name(), molIoRepository::molTo);
+        } catch (IllegalArgumentException e) {
+            return String.format("format: %s not supported", molInputOutputRequest.getFormat());
+        }
     }
-
-    @Override
-    public Mol molFromPkl(String pkl) {
-        return execute(pkl, molIoRepository::molFromPkl);
-    }
-
-    @Override
-    public Mol qmolFromSmiles(String smiles) {
-        return execute(smiles, molIoRepository::qmolFromSmiles);
-    }
-
-    @Override
-    public Mol qmolFromCtab(String ctab, Boolean bool) {
-        return execute(ctab, bool, molIoRepository::qmolFromCtab);
-    }
-
-    @Override
-    public String molToSmiles(Mol mol) {
-        return execute(mol, molIoRepository::molToSmiles);
-    }
-
-    @Override
-    public String molToCxsmiles(Mol mol) {
-        return execute(mol, molIoRepository::molToCxsmiles);
-    }
-
-    @Override
-    public String molToSmarts(Mol mol) {
-        return execute(mol, molIoRepository::molToSmarts);
-    }
-
-    @Override
-    public String molToCxsmarts(Mol mol) {
-        return execute(mol, molIoRepository::molToCxsmarts);
-    }
-
-    @Override
-    public String molToPkl(Mol mol) {
-        return execute(mol, molIoRepository::molToPkl);
-    }
-
-    @Override
-    public String molToCtab(Mol mol, Boolean bool, Boolean bool2) {
-        return execute(mol, molIoRepository::molToCtab);
-    }
-
-    @Override
-    public String molToV3kctab(Mol mol, Boolean bool) {
-        return execute(mol, molIoRepository::molToV3kctab);
-    }
-
-    @Override
-    public String molToSvg(Mol mol) {
-        return execute(mol, molIoRepository::molToSvg);
-    }
-
-    @Override
-    public String molToJson(Mol mol) {
-        return execute(mol, molIoRepository::molToJson);
-    }
-
-    @Override
-    public String molFromJson(Mol mol) {
-        return execute(mol, molIoRepository::molFromJson);
-    }
-
 }

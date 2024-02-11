@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("mol/mcs")
+@RequestMapping("molecule/mcs")
 public class MolMscController {
 
     private final MolMcsService molMcsService;
