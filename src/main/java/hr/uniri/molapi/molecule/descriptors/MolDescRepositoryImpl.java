@@ -3,6 +3,7 @@ package hr.uniri.molapi.molecule.descriptors;
 import hr.uniri.molapi.model.Mol;
 import hr.uniri.molapi.utils.SimpleJdbcCallFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -10,9 +11,12 @@ public class MolDescRepositoryImpl implements MolDescRepository {
 
     private final SimpleJdbcCallFactory simpleJdbcCallFactory;
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    public MolDescRepositoryImpl(SimpleJdbcCallFactory simpleJdbcCallFactory) {
+    public MolDescRepositoryImpl(SimpleJdbcCallFactory simpleJdbcCallFactory, JdbcTemplate jdbcTemplate) {
         this.simpleJdbcCallFactory = simpleJdbcCallFactory;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -59,144 +63,185 @@ public class MolDescRepositoryImpl implements MolDescRepository {
 
     @Override
     public Float molHba(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_hba")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
     }
 
     @Override
     public Float molHbd(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_hbd")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
     }
 
     @Override
     public Float molNumAtoms(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numatoms")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
     }
 
     @Override
     public Float molNumHeavyAtoms(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numheavyatoms")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
     }
 
     @Override
     public Float molNumRotatableBonds(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numrotatablebonds")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
     }
 
     @Override
     public Float molNumHeteroatoms(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numheteroatoms")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumRings(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numrings")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAromaticRings(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaromaticrings")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAliphaticRings(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaliphaticrings")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumSaturatedRings(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numsaturatedrings")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAromaticHeterocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaromaticheterocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAliphaticHeterocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaliphaticheterocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumSaturatedHeterocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numsaturatedheterocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAromaticCarbocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaromaticcarbocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumAliphaticCarbocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numaliphaticcarbocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumSaturatedCarbocycles(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numsaturatedcarbocycles")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumSpiroAtoms(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numspiroatoms")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     @Override
     public Float molNumBridgeheadAtoms(Mol mol) {
-        return simpleJdbcCallFactory
+        Integer integer = simpleJdbcCallFactory
                 .getSimpleJdbcCall("mol_numbridgeheadatoms")
-                .executeFunction(Float.class, mol.getSmiles());
+                .executeFunction(Integer.class, mol.getSmiles());
+        return integer.floatValue();
+
     }
 
     // InChI not available
     @Override
-    public Float molInchi(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("mol_inchi")
-                .executeFunction(Float.class, mol.getSmiles());
+    public String molInchi(Mol mol) {
+        final String SQL = "SELECT mol_inchi(?::mol,'')";
+        return jdbcTemplate.query(SQL,
+                preparedStatement -> {
+                    preparedStatement.setString(1, mol.getSmiles());
+                }, resultSet -> {
+                    resultSet.next();
+                    return resultSet.getString(1);
+                });
     }
 
     // InChI not available
     @Override
-    public Float molInchikey(Mol mol) {
-        return simpleJdbcCallFactory
-                .getSimpleJdbcCall("mol_inchikey")
-                .executeFunction(Float.class, mol.getSmiles());
+    public String molInchikey(Mol mol) {
+        final String SQL = "SELECT mol_inchikey(?::mol,'')";
+        return jdbcTemplate.query(SQL,
+                preparedStatement -> {
+                    preparedStatement.setString(1, mol.getSmiles());
+                }, resultSet -> {
+                    resultSet.next();
+                    return resultSet.getString(1);
+                });
     }
 
     @Override

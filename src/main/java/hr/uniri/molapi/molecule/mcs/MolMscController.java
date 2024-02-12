@@ -19,12 +19,12 @@ public class MolMscController {
     }
 
     @PostMapping("/fmcs")
-    public ResponseEntity<Double> molAmw(@RequestBody final List<Mol> mols) {
+    public ResponseEntity<String> fmcs(@RequestBody final List<Mol> mols) {
         return ResponseEntity.ok(molMcsService.fmcs(mols));
     }
 
     @PostMapping("/fmcsSmiles")
-    public ResponseEntity<Double> fmcsSmiles(@RequestBody final String mols, @RequestParam final String json) {
+    public ResponseEntity<String> fmcsSmiles(@RequestBody final String mols, @RequestParam final String json) {
         return ResponseEntity.ok(molMcsService.fmcsSmiles(mols, json));
     }
 }

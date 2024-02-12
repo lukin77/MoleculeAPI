@@ -5,7 +5,7 @@ import hr.uniri.molapi.model.Mol;
 import java.util.List;
 
 public interface MolMcsRepository {
-    Double fmcs(List<Mol> mols);
+    String fmcs(String mols);
 
-    Double fmcsSmiles(String mols, String json);
+    String fmcsSmiles(String mols, String json);
 }

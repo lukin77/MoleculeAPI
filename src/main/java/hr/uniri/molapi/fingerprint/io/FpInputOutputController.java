@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("fp/io")
+@RequestMapping("fingerprint/io")
 public class FpInputOutputController {
     private final FpInputOutputService fpInputOutputService;
 

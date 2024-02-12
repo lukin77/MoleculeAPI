@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MolDescRequest {
-    String smiles;
+    String molecule;
     String descriptor;
 }

@@ -6,4 +6,6 @@ public interface MolIoRepository {
     String molFrom(byte[] molecule, String format);
 
     String molTo(String molecule, String format);
+
+    String qmolFrom(String s, String s1);
 }

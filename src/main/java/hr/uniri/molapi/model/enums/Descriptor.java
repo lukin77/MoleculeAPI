@@ -24,7 +24,5 @@ public enum Descriptor {
     mol_numaliphaticcarbocycles,
     mol_numsaturatedcarbocycles,
     mol_numspiroatoms,
-    mol_numbridgeheadatoms,
-    mol_inchi,
-    mol_inchikey
+    mol_numbridgeheadatoms
 }

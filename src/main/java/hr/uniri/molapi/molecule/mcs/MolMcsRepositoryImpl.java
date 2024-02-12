@@ -1,19 +1,26 @@
 package hr.uniri.molapi.molecule.mcs;
 
-import hr.uniri.molapi.model.Mol;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class MolMcsRepositoryImpl implements MolMcsRepository {
-    @Override
-    public Double fmcs(List<Mol> mols) {
-        return null;
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public MolMcsRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public Double fmcsSmiles(String mols, String json) {
-        return null;
+    public String fmcs(String mols) {
+        return jdbcTemplate.queryForObject("SELECT emolecules.fmcs(?::text)", String.class, mols);
+    }
+
+    @Override
+    public String fmcsSmiles(String mols, String json) {
+        return jdbcTemplate.queryForObject("SELECT emolecules.fmcs_smiles(?::text, ?)", String.class, mols, json);
     }
 }

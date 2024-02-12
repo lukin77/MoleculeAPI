@@ -36,7 +36,7 @@ public class MolSubOpRepositoryImpl implements MolSubOpRepository {
                 preparedStatement -> {
                     preparedStatement.setString(1, mol.getSmiles());
                     preparedStatement.setString(2, mol1.getSmiles());
-                    preparedStatement.setBoolean(3, uniquified);
+                    preparedStatement.setBoolean(3, uniquified != null ? uniquified : true);
                 }, resultSet -> {
                     resultSet.next();
                     return resultSet.getInt(1);

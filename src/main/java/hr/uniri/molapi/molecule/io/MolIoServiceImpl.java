@@ -28,6 +28,8 @@ public class MolIoServiceImpl implements MolIoService {
             Object molecule = molInputOutputRequest.getMolecule();
 
             switch (molFromFormat) {
+                case cxsmarts, cxsmiles, smarts:
+                    return execute(molecule.toString(), molFromFormat.name(), molIoRepository::qmolFrom);
                 case ctab, smiles:
                     return execute(molecule.toString(), molFromFormat.name(), molIoRepository::molFrom);
                 case json:

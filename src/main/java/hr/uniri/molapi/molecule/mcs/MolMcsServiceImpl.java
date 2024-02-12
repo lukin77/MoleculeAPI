@@ -17,12 +17,14 @@ public class MolMcsServiceImpl implements MolMcsService {
     }
 
     @Override
-    public Double fmcs(List<Mol> mols) {
-        return molMcsRepository.fmcs(mols);
+    public String fmcs(List<Mol> mols) {
+        // for each mol in mols add them to sting
+        String molovi = mols.stream().map(Mol::getSmiles).reduce("", (s1, s2) -> s1 + " " + s2);
+        return molMcsRepository.fmcs(molovi);
     }
 
     @Override
-    public Double fmcsSmiles(String mols, String json) {
+    public String fmcsSmiles(String mols, String json) {
         return molMcsRepository.fmcsSmiles(mols, json);
     }
 }

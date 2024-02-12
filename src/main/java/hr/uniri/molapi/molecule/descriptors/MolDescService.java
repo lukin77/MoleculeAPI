@@ -10,4 +10,7 @@ public interface MolDescService {
 
     String molNmHash(Mol mol, String hashType);
 
+    String inchi(Mol mol);
+
+    String inchiKey(Mol mol);
 }

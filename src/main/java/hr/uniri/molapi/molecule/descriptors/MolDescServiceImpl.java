@@ -20,7 +20,7 @@ public class MolDescServiceImpl implements MolDescService {
     @Override
     public Float description(MolDescRequest molDescRequest) {
         Descriptor descriptor = Descriptor.valueOf(molDescRequest.getDescriptor());
-        Mol mol = new Mol(molDescRequest.getSmiles());
+        Mol mol = new Mol(molDescRequest.getMolecule());
 
         return switch (descriptor) {
             case mol_amw -> execute(mol, molDescRepository::molAmw);
@@ -47,8 +47,8 @@ public class MolDescServiceImpl implements MolDescService {
             case mol_numsaturatedcarbocycles -> execute(mol, molDescRepository::molNumSaturatedCarbocycles);
             case mol_numspiroatoms -> execute(mol, molDescRepository::molNumSpiroAtoms);
             case mol_numbridgeheadatoms -> execute(mol, molDescRepository::molNumBridgeheadAtoms);
-            case mol_inchi -> execute(mol, molDescRepository::molInchi);
-            case mol_inchikey -> execute(mol, molDescRepository::molInchikey);
+//            case mol_inchi -> execute(mol, molDescRepository::molInchi);
+//            case mol_inchikey -> execute(mol, molDescRepository::molInchikey);
         };
     }
 
@@ -60,5 +60,15 @@ public class MolDescServiceImpl implements MolDescService {
     @Override
     public String molNmHash(Mol mol, String hashType) {
         return null;
+    }
+
+    @Override
+    public String inchi(Mol mol) {
+        return molDescRepository.molInchi(mol);
+    }
+
+    @Override
+    public String inchiKey(Mol mol) {
+        return molDescRepository.molInchikey(mol);
     }
 }

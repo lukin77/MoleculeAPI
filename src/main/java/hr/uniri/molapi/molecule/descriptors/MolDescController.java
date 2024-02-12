@@ -16,7 +16,7 @@ public class MolDescController {
         this.molDescService = molDescService;
     }
 
-    @PostMapping("/description")
+    @PostMapping("/descriptor")
     public ResponseEntity<Float> description(@RequestBody final MolDescRequest molDescRequest) {
         return ResponseEntity.ok(molDescService.description(molDescRequest));
     }
@@ -26,6 +26,16 @@ public class MolDescController {
                                              @RequestParam(value = "bool1", defaultValue = "false") Boolean bool1,
                                              @RequestParam(value = "bool2", defaultValue = "true") Boolean bool2) {
         return ResponseEntity.ok(molDescService.molFormula(mol, bool1, bool2));
+    }
+
+    @PostMapping("/inchi")
+    public ResponseEntity<String> inchi(@RequestBody final Mol mol) {
+        return ResponseEntity.ok(molDescService.inchi(mol));
+    }
+
+    @PostMapping("/inchiKey")
+    public ResponseEntity<String> inchiKey(@RequestBody final Mol mol) {
+        return ResponseEntity.ok(molDescService.inchiKey(mol));
     }
 
     @PostMapping("/molNmHash")

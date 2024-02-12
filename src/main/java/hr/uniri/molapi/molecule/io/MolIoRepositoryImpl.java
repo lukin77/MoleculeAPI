@@ -19,6 +19,12 @@ public class MolIoRepositoryImpl implements MolIoRepository {
     }
 
     @Override
+    public String qmolFrom(String molecule, String format) {
+        final String sql = "SELECT qmol_from_" + format + "(?::cstring)";
+        return jdbcTemplate.queryForObject(sql, String.class, molecule);
+    }
+
+    @Override
     public String molFrom(byte[] molecule, String format) {
         final String sql = "SELECT mol_from_" + format + "(?::bytea)";
         return jdbcTemplate.queryForObject(sql, String.class, molecule);

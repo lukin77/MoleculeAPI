@@ -51,9 +51,9 @@ public interface MolDescRepository {
 
     Float molNumBridgeheadAtoms(Mol mol);
 
-    Float molInchi(Mol mol);
+    String molInchi(Mol mol);
 
-    Float molInchikey(Mol mol);
+    String molInchikey(Mol mol);
 
     Float molFormula(Mol mol);
 
